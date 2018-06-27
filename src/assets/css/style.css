@@ -1,0 +1,45 @@
+.container__main {
+  background: #9053c7;
+  background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: linear-gradient(-135deg, #c850c0, #4158d0);
+}
+
+.wrap {
+  background: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 20px;
+  margin: 15px 0px;
+  min-height: calc(100vh - 30px);
+}
+
+.content {
+  margin-top: 10px;
+}
+
+.navbar {
+  border-radius: 5px;
+}
+
+.wrap__home {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+}
+
+.block-search {
+  margin: 10px;
+  padding: 0% 25%;
+}
+
+.icon-btn {
+  cursor: pointer;
+}
