@@ -19,7 +19,7 @@ class Expense extends Component{
               expense_type : "Card",
               expense_date : "",
               create_by : "Suresh",
-              upd_by : "Suresh"
+              update_by : "Suresh"
           }
         }
       }
