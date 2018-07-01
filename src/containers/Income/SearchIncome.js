@@ -1,6 +1,7 @@
 import React from 'react'
 import { Row, Col } from 'reactstrap'
 
+import api from '../../api'
 import SearchBar from '../../components/SearchBar'
 import IncomeCard from '../../components/Income/IncomeCard'
 
@@ -10,36 +11,23 @@ class SearchIncome extends React.Component {
 
     //TODO: Remove hard coded test data from state
     this.state = {
-      incomeList: [
-        {
-          'incomeId': 'kjfhsdf43453',
-          'incomeAmount': 2000.00,
-          'incomeType': 'Savings',
-          'incomeDate': '2018-05-28',
-          'createdBy': '3423jkhkdf',
-          'updatedBy': '3423jkhkdf',
-          'isDelete': false,
-          'createdDate': '2018-05-28',
-          'updatedDate': '2018-05-28'
-        },
-        {
-          'incomeId': 'hgfh45345345',
-          'incomeAmount': 2500.00,
-          'incomeType': 'Gift',
-          'incomeDate': '2018-05-22',
-          'createdBy': '3423jkhkdf',
-          'updatedBy': '3423jkhkdf',
-          'isDelete': false,
-          'createdDate': '2018-05-22',
-          'updatedDate': '2018-05-22'
-        }
-      ],
+      incomeList: [],
       search: ""
     }
   }
 
   componentWillMount() {
     //TODO: get data from api and update state
+    api.get('/income/all')
+      .then(res => {
+        console.log(res)
+        this.setState({
+          incomeList: res.data
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   handleChange = (event) => {
@@ -51,6 +39,20 @@ class SearchIncome extends React.Component {
   handleSubmit = () => {
     console.log("submitted")
     //TODO: submit search query to api and get data and update state
+    if(this.state.search !== "") {
+      api.get(`/income/search/${this.state.search}`)
+        .then(res => {
+          console.log(res)
+          if(res.status === 200) {
+            this.setState({
+              incomeList: res.data
+            })
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
   }
 
   render() {

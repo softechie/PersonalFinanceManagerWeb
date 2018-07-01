@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Row, Col, Card, CardBody, CardTitle, FormGroup, Label, Input, Button } from 'reactstrap'
+import moment from 'moment'
 
 const IncomeFieldsCard = (props) => {
   return (
@@ -24,7 +25,7 @@ const IncomeFieldsCard = (props) => {
               <FormGroup>
                 <Label for="incomeType">Catagory</Label>
                 <Input type="select"
-                       name="select"
+                       name="incomeType"
                        id="incomeType"
                        value={props.incomeFieldValue.incomeType}
                        onChange={props.incomeFieldChange}>
@@ -41,7 +42,7 @@ const IncomeFieldsCard = (props) => {
                        name="incomeDate"
                        id="incomeDate"
                        placeholder="date placeholder"
-                       selected={props.incomeFieldValue.incomeDate}
+                       value={props.incomeFieldValue.incomeDate ? moment(props.incomeFieldValue.incomeDate).format('YYYY-MM-DD') : ""}
                        onChange={props.incomeFieldChange}>
                 </Input>
               </FormGroup>
