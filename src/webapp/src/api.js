@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8080/v1',
+  baseURL: 'https://localhost:8443/v1',
   /* other custom settings */
 })
 
