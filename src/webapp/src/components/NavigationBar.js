@@ -38,6 +38,12 @@ class NavigationBar extends React.Component {
             <NavItem>
               <NavLink to="/expense" className="nav-link" activeClassName="">Expense</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink to="/investments/all" className="nav-link" activeClassName="active">Investments</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink to="/bankAccount/all" className="nav-link" activeClassName="active">Bank Account</NavLink>
+            </NavItem>
           </Nav>
           <Nav className="ml-auto" navbar>
             <NavItem>

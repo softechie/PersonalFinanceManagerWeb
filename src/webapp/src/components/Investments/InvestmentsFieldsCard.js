@@ -8,7 +8,8 @@ import { Field, reduxForm } from 'redux-form'
 
 const required = value => (value || typeof value === 'number' ? undefined : 'Required')
 const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined
-const IncomeFieldsCard = (props) => {
+
+const InvestmentsFieldsCard = (props) => {
   return (
     <Card>
       <CardBody>
@@ -17,10 +18,10 @@ const IncomeFieldsCard = (props) => {
           <Row>
             <Col xs="12" sm="6" lg="4">
               <FormGroup>
-                <Field id="incomeAmount"
+                <Field id="investmentsAmount"
                        type="text"
-                       name="incomeAmount"
-                       title="Income Amount"
+                       name="investmentsAmount"
+                       title="Investments Amount"
                        placeholder="Eg: 2000"
                        validate={[required, number]}
                        component={InputText}>
@@ -29,10 +30,10 @@ const IncomeFieldsCard = (props) => {
             </Col>
             <Col xs="12" sm="6" lg="4">
               <FormGroup>
-                <Field id="incomeType"
+                <Field id="investmentsType"
                        type="select"
-                       name="incomeType"
-                       title="Income Catagory"
+                       name="investmentsType"
+                       title="Investments Catagory"
                        validate={required}
                        component={InputSelect}>
                   <option value="salary">Salary</option>
@@ -43,10 +44,10 @@ const IncomeFieldsCard = (props) => {
             </Col>
             <Col xs="12" sm="6" lg="4">
               <FormGroup>
-                <Field id="incomeDate"
+                <Field id="investmentsDate"
                        type="date"
-                       name="incomeDate"
-                       title="Income Date"
+                       name="investmentsDate"
+                       title="Investments Date"
                        validate={required}
                        component={InputDate}>
                 </Field>
@@ -62,16 +63,16 @@ const IncomeFieldsCard = (props) => {
   )
 }
 
-IncomeFieldsCard.propTypes = {
+InvestmentsFieldsCard.propTypes = {
   title: PropTypes.string.isRequired,
   submitName: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired
 }
 
 export default reduxForm({
-  form: 'incomeForm',
+  form: 'investmentsForm',
   enableReinitialize: true,
   initialValues: {
-    incomeType: 'salary'
+    investmentsType: 'salary'
   }
-})(IncomeFieldsCard)
+})(InvestmentsFieldsCard)

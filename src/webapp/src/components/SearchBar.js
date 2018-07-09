@@ -1,25 +1,35 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { InputGroup, InputGroupAddon, Input, Button } from 'reactstrap'
+import { InputGroup, InputGroupAddon, Button } from 'reactstrap'
+
+import InputText from './Inputs/InputText'
+import { Field, reduxForm } from 'redux-form'
+
+const required = value => (value || typeof value === 'number' ? undefined : 'Required')
 
 const SearchBar = (props) => {
   return(
-    <InputGroup>
-      <Input placeholder={props.searchName}
-             value={props.searchValue}
-             onChange={props.searchChange}/>
-      <InputGroupAddon addonType="append">
-        <Button onClick={props.searchSubmit}><i className="fa fa-search" aria-hidden="true"></i></Button>
-      </InputGroupAddon>
-    </InputGroup>
+    <form onSubmit={props.handleSubmit}>
+      <InputGroup>
+        <Field type="text"
+               name="search"
+               placeholder={props.placeholder}
+               validate={required}
+               component={InputText}>
+        </Field>
+        <InputGroupAddon addonType="append">
+          <Button type="submit"><i className="fa fa-search" aria-hidden="true"></i></Button>
+        </InputGroupAddon>
+      </InputGroup>
+    </form>
   )
 }
 
 SearchBar.propTypes = {
-  searchName: PropTypes.string.isRequired,
-  searchValue: PropTypes.string.isRequired,
-  searchChange: PropTypes.func.isRequired,
-  searchSubmit: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired
 }
 
-export default SearchBar
+export default reduxForm({
+  form: 'searchForm',
+})(SearchBar)

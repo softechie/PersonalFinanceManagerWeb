@@ -1,7 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Card, CardBody, CardText, UncontrolledTooltip  } from 'reactstrap'
-
 import { getFormatedDate } from '../../helper'
 
 const IncomeCard = (props) => {
@@ -34,6 +34,10 @@ const IncomeCard = (props) => {
       </CardBody>
     </Card>
   )
+}
+
+IncomeCard.propTypes = {
+  income: PropTypes.object.isRequired
 }
 
 export default IncomeCard

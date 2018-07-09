@@ -7,8 +7,15 @@ import './assets/css/util.css'
 // import './assets/css/main.css'
 import './assets/css/style.css'
 
+import { Provider } from 'react-redux'
+import store from './store'
+
 import App from './App';
 import registerServiceWorker from './registerServiceWorker'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>, document.getElementById('root'))
+
 registerServiceWorker()
