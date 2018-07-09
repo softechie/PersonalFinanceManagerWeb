@@ -5,6 +5,9 @@ import { Card, CardBody, CardText, UncontrolledTooltip  } from 'reactstrap'
 import { getFormatedDate } from '../../helper'
 
 const InvestmentsCard = (props) => {
+  const handleDelete = () => {
+    props.getInvestmentsId(props.investments.investmentsId)
+  }
   return (
     <Card className="m-b-5">
       <CardBody>
@@ -18,7 +21,7 @@ const InvestmentsCard = (props) => {
             <Link to={`/investments/edit/${props.investments.investmentsId}`}>
               <i id={`investmentsEdit_${props.investments.investmentsId}`} className="fa fa-pencil icon-btn text-warning" aria-hidden="true"></i>
             </Link>
-            <i id={`investmentsDelete_${props.investments.investmentsId}`} className="fa fa-trash-o icon-btn m-l-15 text-danger" aria-hidden="true"></i>
+            <i id={`investmentsDelete_${props.investments.investmentsId}`} className="fa fa-trash-o icon-btn m-l-15 text-danger" onClick={handleDelete} aria-hidden="true"></i>
             <UncontrolledTooltip placement="top" target={`investmentsEdit_${props.investments.investmentsId}`}>
               Edit
             </UncontrolledTooltip>
@@ -37,7 +40,8 @@ const InvestmentsCard = (props) => {
 }
 
 InvestmentsCard.propTypes = {
-  investments: PropTypes.object.isRequired
+  investments: PropTypes.object.isRequired,
+  getInvestmentsId: PropTypes.func.isRequired
 }
 
 export default InvestmentsCard

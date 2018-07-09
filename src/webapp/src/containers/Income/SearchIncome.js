@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import * as actions from '../../actions'
+import api from '../../api'
 import SearchBar from '../../components/SearchBar'
 import IncomeCard from '../../components/Income/IncomeCard'
 import DeleteModal from '../../components/DeleteModal'
@@ -10,9 +11,11 @@ class SearchIncome extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      incomeDeleteModal: false
+      incomeDeleteModal: false,
+      deleteIncomeId: ''
     }
   }
+
   componentWillMount() {
     //Dispatching get all action
     this.props.getIncomeList()
@@ -25,17 +28,25 @@ class SearchIncome extends React.Component {
   }
 
   handleGetIncomeId = (incomeId) => {
-    console.log(incomeId)
     this.setState({
-      incomeDeleteModal: true
+      incomeDeleteModal: true,
+      deleteIncomeId: incomeId
     })
   }
 
   handleDelete = () => {
-    console.log("in Delete")
     this.setState({
       incomeDeleteModal: false
     })
+    api.delete(`/income/delete/${this.state.deleteIncomeId}`)
+      .then(res => {
+        console.log(res)
+        if(res.status === 200)
+          this.props.getIncomeList()
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   handleSubmit = (values) => {
@@ -54,7 +65,11 @@ class SearchIncome extends React.Component {
           </div>
           <div className="block-content">
             {this.props.income.incomeList.map(income => {
-              return <IncomeCard key={income.incomeId} income={income} match={this.props.match} getIncomeId={this.handleGetIncomeId}></IncomeCard>
+              return <IncomeCard key={income.incomeId}
+                                 income={income}
+                                 match={this.props.match}
+                                 getIncomeId={this.handleGetIncomeId}>
+                      </IncomeCard>
             })}
           </div>
         </Col>

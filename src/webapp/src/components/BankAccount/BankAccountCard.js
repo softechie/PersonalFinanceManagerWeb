@@ -4,6 +4,9 @@ import { Card, CardBody, CardText, UncontrolledTooltip  } from 'reactstrap'
 import { getFormatedDate } from '../../helper'
 
 const BankAccountCard = (props) => {
+  const handleDelete = () => {
+    props.getBankAccountId(props.bankAccount.bankAccountId)
+  }
   return (
     <Card className="m-b-5">
       <CardBody>
@@ -16,7 +19,7 @@ const BankAccountCard = (props) => {
             <i className="fa fa-calendar m-l-30 text-info" aria-hidden="true"></i> {props.bankAccount.ifscCode}
           </span>
           <span>
-            <i id={`bankAccountDelete_${props.bankAccount.bankAccountId}`} className="fa fa-trash-o icon-btn m-l-15 text-danger" aria-hidden="true"></i>
+            <i id={`bankAccountDelete_${props.bankAccount.bankAccountId}`} className="fa fa-trash-o icon-btn m-l-15 text-danger" onClick={handleDelete} aria-hidden="true"></i>
             <UncontrolledTooltip placement="top" target={`bankAccountDelete_${props.bankAccount.bankAccountId}`}>
               Delete
             </UncontrolledTooltip>
@@ -32,7 +35,8 @@ const BankAccountCard = (props) => {
 }
 
 BankAccountCard.propTypes = {
-  bankAccount: PropTypes.object.isRequired
+  bankAccount: PropTypes.object.isRequired,
+  getBankAccountId: PropTypes.func.isRequired
 }
 
 export default BankAccountCard

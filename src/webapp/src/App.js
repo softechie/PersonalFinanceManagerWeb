@@ -6,6 +6,8 @@ import PageRoutes from './routes/pageRoutes'
 import { Container, Row, Col } from 'reactstrap'
 
 import NavigationBar from './components/NavigationBar'
+import NotificationsSystem from 'reapop';
+import theme from 'reapop-theme-wybo';
 
 class App extends Component {
   render() {
@@ -22,6 +24,7 @@ class App extends Component {
               </div>
             </Col>
           </Row>
+          <NotificationsSystem theme={theme} />
         </Container>
       </BrowserRouter>
     );

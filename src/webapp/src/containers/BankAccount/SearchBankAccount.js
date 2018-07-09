@@ -2,13 +2,51 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import * as actions from '../../actions'
+import api from '../../api'
 import SearchBar from '../../components/SearchBar'
 import BankAccountCard from '../../components/BankAccount/BankAccountCard'
+import DeleteModal from '../../components/DeleteModal'
 
 class SearchBankAccount extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      bankAccountDeleteModal: false,
+      deleteBankAccountId: ''
+    }
+  }
+
   componentWillMount() {
     //Dispatching get all action
     this.props.getBankAccountList()
+  }
+
+  toggle = () => {
+    this.setState({
+      bankAccountDeleteModal: !this.state.bankAccountDeleteModal
+    })
+  }
+
+  handleGetBankAccountId = (bankAccountId) => {
+    this.setState({
+      bankAccountDeleteModal: true,
+      deleteBankAccountId: bankAccountId
+    })
+  }
+
+  handleDelete = () => {
+    this.setState({
+      bankAccountDeleteModal: false
+    })
+    api.delete(`/bankAccount/delete/${this.state.deleteBankAccountId}`)
+      .then(res => {
+        console.log(res)
+        if(res.status === 200)
+          this.props.getBankAccountList()
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   handleSubmit = (values) => {
@@ -27,10 +65,20 @@ class SearchBankAccount extends React.Component {
           </div>
           <div className="block-content">
             {this.props.bankAccount.bankAccountList.map(bankAccount => {
-              return <BankAccountCard key={bankAccount.bankAccountId} bankAccount={bankAccount} match={this.props.match}></BankAccountCard>
+              return <BankAccountCard key={bankAccount.bankAccountId}
+                                      bankAccount={bankAccount}
+                                      match={this.props.match}
+                                      getBankAccountId={this.handleGetBankAccountId}>
+                      </BankAccountCard>
             })}
           </div>
         </Col>
+        <DeleteModal modalState={this.state.bankAccountDeleteModal}
+                     modalToggle={this.toggle}
+                     modalAction={this.handleDelete}
+                     modalTitle="Delete Bank Account"
+                     modalBody="Are you sure you want to delete?">
+        </DeleteModal>
       </Row>
     )
   }
