@@ -4,16 +4,37 @@ import { Row, Col } from 'reactstrap'
 import * as actions from '../../actions'
 import SearchBar from '../../components/SearchBar'
 import IncomeCard from '../../components/Income/IncomeCard'
+import DeleteModal from '../../components/DeleteModal'
 
 class SearchIncome extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      incomeDeleteModal: false
+    }
+  }
   componentWillMount() {
     //Dispatching get all action
     this.props.getIncomeList()
   }
 
-  handleChange = (event) => {
+  toggle = () => {
     this.setState({
-      search: event.target.value
+      incomeDeleteModal: !this.state.incomeDeleteModal
+    })
+  }
+
+  handleGetIncomeId = (incomeId) => {
+    console.log(incomeId)
+    this.setState({
+      incomeDeleteModal: true
+    })
+  }
+
+  handleDelete = () => {
+    console.log("in Delete")
+    this.setState({
+      incomeDeleteModal: false
     })
   }
 
@@ -33,10 +54,16 @@ class SearchIncome extends React.Component {
           </div>
           <div className="block-content">
             {this.props.income.incomeList.map(income => {
-              return <IncomeCard key={income.incomeId} income={income} match={this.props.match}></IncomeCard>
+              return <IncomeCard key={income.incomeId} income={income} match={this.props.match} getIncomeId={this.handleGetIncomeId}></IncomeCard>
             })}
           </div>
         </Col>
+        <DeleteModal modalState={this.state.incomeDeleteModal}
+                     modalToggle={this.toggle}
+                     modalAction={this.handleDelete}
+                     modalTitle="Delete Income"
+                     modalBody="Are you sure you want to delete?">
+        </DeleteModal>
       </Row>
     )
   }

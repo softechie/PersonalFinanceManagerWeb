@@ -32,9 +32,6 @@ class EditIncome extends React.Component {
           <div className="m-t-10">
             <IncomeFieldsCard title="Edit Income"
                               submitName="Update"
-                              incomeFieldValue={this.state.incomeData}
-                              incomeFieldChange={this.handleChange}
-                              incomeFieldSubmit={this.handleSubmit}
                               initialValues={this.props.incomeEditData}
                               onSubmit={this.handleSubmit}>
             </IncomeFieldsCard>
