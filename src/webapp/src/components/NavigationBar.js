@@ -24,7 +24,7 @@ class NavigationBar extends React.Component {
   }
   render() {
     return (
-      <Navbar color="menu" dark expand="lg">
+      <Navbar color="menu" dark expand="lg" fixed="top">
         <NavbarBrand href="/">PFM</NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
