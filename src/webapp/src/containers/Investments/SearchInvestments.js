@@ -42,10 +42,12 @@ class SearchInvestments extends React.Component {
       .then(res => {
         console.log(res)
         if(res.status === 200)
+          this.props.successToast('Successfully deleted')
           this.props.getInvestmentsList()
       })
       .catch(err => {
         console.log(err)
+        this.props.dangerToast('Error occurred while deleting data')
       })
   }
 
@@ -90,7 +92,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getInvestmentsList: () => dispatch(actions.getAllInvestments()),
-  searchInvestments: (investmentsKey) => dispatch(actions.searchInvestments(investmentsKey))
+  searchInvestments: (investmentsKey) => dispatch(actions.searchInvestments(investmentsKey)),
+  successToast: (msg) => dispatch(actions.successToast(msg)),
+  dangerToast: (msg) => dispatch(actions.dangerToast(msg))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (SearchInvestments)

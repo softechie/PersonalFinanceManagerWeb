@@ -13,10 +13,10 @@ const BankAccountCard = (props) => {
         <CardText className="flex-sb-m">
           <span>
             <i className="fa fa-bookmark-o text-primary" aria-hidden="true"></i> {props.bankAccount.accountNumber}
-            <i className="fa fa-money m-l-30 text-success" aria-hidden="true"></i> <i className="fa fa-inr fs-13" aria-hidden="true"></i>{props.bankAccount.accountHolderName}
-            <i className="fa fa-calendar m-l-30 text-info" aria-hidden="true"></i> {props.bankAccount.accountType}
-            <i className="fa fa-calendar m-l-30 text-info" aria-hidden="true"></i> {props.bankAccount.bankName}
-            <i className="fa fa-calendar m-l-30 text-info" aria-hidden="true"></i> {props.bankAccount.ifscCode}
+            <i className="fa fa-user-circle m-l-30 text-success" aria-hidden="true"></i> {props.bankAccount.accountHolderName}
+            <i className="fa fa-cube m-l-30 text-warning" aria-hidden="true"></i> {props.bankAccount.accountType}
+            <i className="fa fa-university m-l-30 text-info" aria-hidden="true"></i> {props.bankAccount.bankName}
+            <i className="fa fa-building-o m-l-30 text-info" aria-hidden="true"></i> {props.bankAccount.ifscCode}
           </span>
           <span>
             <i id={`bankAccountDelete_${props.bankAccount.bankAccountId}`} className="fa fa-trash-o icon-btn m-l-15 text-danger" onClick={handleDelete} aria-hidden="true"></i>

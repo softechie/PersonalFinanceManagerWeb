@@ -19,10 +19,12 @@ class EditIncome extends React.Component {
       .then(res => {
         console.log(res)
         if(res.status === 200)
+          this.props.successToast('Successfully updated')
           this.props.history.push('/income/all')
       })
       .catch(err => {
         console.log(err)
+        this.props.dangerToast('Error occurred while updating data')
       })
   }
   render() {
@@ -47,9 +49,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getIncome: (incomeId) => {
-    dispatch(actions.getIncome(incomeId))
-  }
+  getIncome: (incomeId) => dispatch(actions.getIncome(incomeId)),
+  successToast: (msg) => dispatch(actions.successToast(msg)),
+  dangerToast: (msg) => dispatch(actions.dangerToast(msg))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (EditIncome)

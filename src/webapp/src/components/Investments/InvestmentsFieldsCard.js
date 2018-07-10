@@ -36,8 +36,12 @@ const InvestmentsFieldsCard = (props) => {
                        title="Investments Catagory"
                        validate={required}
                        component={InputSelect}>
-                  <option value="salary">Salary</option>
-                  <option value="gift">Gift</option>
+                  <option value="stocks">Stocks</option>
+                  <option value="mutual-funds">Mutual Funds</option>
+                  <option value="bonds">Bonds</option>
+                  <option value="retirement">Retirement</option>
+                  <option value="investment-funds">Investment Funds</option>
+                  <option value="insurance">Insurance</option>
                   <option value="other">Other</option>
                 </Field>
               </FormGroup>
@@ -73,6 +77,6 @@ export default reduxForm({
   form: 'investmentsForm',
   enableReinitialize: true,
   initialValues: {
-    investmentsType: 'salary'
+    investmentsType: 'stocks'
   }
 })(InvestmentsFieldsCard)

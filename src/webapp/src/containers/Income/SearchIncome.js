@@ -42,10 +42,12 @@ class SearchIncome extends React.Component {
       .then(res => {
         console.log(res)
         if(res.status === 200)
+          this.props.successToast('Successfully deleted')
           this.props.getIncomeList()
       })
       .catch(err => {
         console.log(err)
+        this.props.dangerToast('Error occurred while deleting data')
       })
   }
 
@@ -90,7 +92,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getIncomeList: () => dispatch(actions.getAllIncome()),
-  searchIncome: (incomeKey) => dispatch(actions.searchIncome(incomeKey))
+  searchIncome: (incomeKey) => dispatch(actions.searchIncome(incomeKey)),
+  successToast: (msg) => dispatch(actions.successToast(msg)),
+  dangerToast: (msg) => dispatch(actions.dangerToast(msg))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (SearchIncome)
