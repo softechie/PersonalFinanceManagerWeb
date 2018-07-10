@@ -13,7 +13,7 @@ class SearchIncome extends React.Component {
       incomeList: [
         {
           'incomeId': 'kjfhsdf43453',
-          'incomeAmount': 2000.00,
+          'incomeAmount': 200.00,
           'incomeType': 'Savings',
           'incomeDate': '2018-05-28',
           'createdBy': '3423jkhkdf',
@@ -58,7 +58,7 @@ class SearchIncome extends React.Component {
       <Row>
         <Col>
           <div className="block-search">
-            <SearchBar searchName="search income..."
+            <SearchBar searchName="Search income..."
                        searchValue={this.state.search}
                        searchChange={this.handleChange}
                        searchSubmit={this.handleSubmit}>

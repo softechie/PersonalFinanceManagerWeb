@@ -12,7 +12,7 @@ const ExpenseCard = (props) => {
           <span>
             <i className="fa fa-bookmark-o text-primary" aria-hidden="true"></i> {props.expense.expense_name}
             <i className="fa fa-money m-l-30 text-success" aria-hidden="true"></i> <i className="fa fa-inr fs-13" aria-hidden="true"></i>{props.expense.expense_amount}
-            <i className="fa fa-bookmark-o m-l-30 text-primary" aria-hidden="true"></i> {props.expense.expense_type}
+            <i className="fa fa-credit-card m-l-30 text-warning" aria-hidden="true"></i> {props.expense.expense_type}
             <i className="fa fa-calendar m-l-30 text-info" aria-hidden="true"></i> {getFormatedDate(props.expense.expense_date)}
           </span>
           <span>

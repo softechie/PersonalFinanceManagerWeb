@@ -69,7 +69,28 @@
   box-shadow: 4px 2px 10px 0px rgba(0,0,0,0.2), 0 10px 8px 0 rgba(0,0,0,0.19) !important;
 }
 
-.li-active{
+.clr{
   color: #fff;
-  background-color: rgb(18, 49, 113);
+}
+
+.icon-color{
+  background :linear-gradient(120deg, #2ffc0a 0%, #ffffff 25%, #0b97a6 50%, #fcff1e 100%);
+  -webkit-background-clip : text;
+  -ms-background-clip : text;
+  -moz-background-clip : text;
+  background-clip : text;
+  -webkit-text-fill-color : transparent;
+  -ms-text-fill-color : transparent;
+  -moz-text-fill-color : transparent;
+  text-fill-color : transparent;
+  -webkit-animation-name : masked-animation;
+  -webkit-animation-duration : 50s;
+  -webkit-animation-iteration-count : infinite;
+  -webkit-animation-timing-function : linear;
+  font-weight : bold;
+}
+
+.expense-scroll{
+  height : 450px;
+  overflow : auto;
 }

@@ -28,7 +28,7 @@ const ExpenseFieldsCard = (props) => {
               <FormGroup>
                 <Label for="expenseType">Expense Type</Label>
                 <Input type="select" name="expense_type" id="expenseType"
-                       value={props.expenseFieldValue.expense_type} onChange={props.expenseFieldChange} selected={props.expenseFieldValue.expense_type}>
+                       value={props.expenseFieldValue.expense_type} onChange={props.expenseFieldChange}>
                        
                   <option value="Card">Card</option>
                   <option value="Cash">Cash</option>
@@ -48,7 +48,7 @@ const ExpenseFieldsCard = (props) => {
               </FormGroup>
             </Col>
             <Col xs="12" className="text-center">
-              <Button color="primary" onClick={props.expenseFieldSubmit}>{props.submitName}</Button>
+              <Button color="primary" onClick={props.expenseFieldSubmit}><i className="fa fa-plus-circle clr" aria-hidden="true"></i>  {props.submitName}</Button>
             </Col>
           </Row>
       </CardBody>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'reactstrap'
+import { Row, Col, Button, Collapse } from 'reactstrap'
 import API from '../baseUrl';
 import ExpenseCard from '../components/Expense/ExpenseCard'
 import ExpenseFieldsCard from '../components/Expense/ExpenseFieldsCard'
@@ -7,10 +7,12 @@ import { getFormatedDateForApi } from '../helper'
 
 class Expense extends Component{
     
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.toggle = this.toggle.bind(this);
     
         this.state = {
+          collapse: false,
           expenseData : [],
           expenseAddData : {
               login_id : "1",
@@ -23,13 +25,17 @@ class Expense extends Component{
           }
         }
       }
+
+      toggle() {
+        this.setState({ collapse: !this.state.collapse });
+      }
     
       componentDidMount() {
 
         API.get('v1/expense/all/1')
         .then(res=>{
             const expenseData = res.data;
-            this.setState({ expenseData });
+            this.setState({ expenseData : expenseData });
             console.log(this.state.expenseData);
         })
       }
@@ -65,23 +71,26 @@ class Expense extends Component{
 
     render(){
         return (
-            <Row>
-                <Col>
+            <div>
+                <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}><i className="fa fa-plus-circle clr" aria-hidden="true"></i></Button>
+                <Collapse isOpen={this.state.collapse}>
                     <ExpenseFieldsCard title="Add Expense"
                                     submitName="Add"
                                     expenseFieldValue={this.state.expenseAddData}
                                     expenseFieldChange={this.handleChange}
                                     expenseFieldSubmit={this.handleSubmit}>
                     </ExpenseFieldsCard>
-                    <Row><Col></Col></Row>
-                
-              <div className="block-content">
-                {this.state.expenseData.map(expense => {
-                    return <ExpenseCard key={expense.expense_id} expense={expense} match={this.props.match}></ExpenseCard>
-                })}
-              </div>
-            </Col>
-          </Row>
+                </Collapse>
+
+                <Row><Col></Col></Row>
+            
+                <div className="block-content expense-scroll">
+                    {this.state.expenseData.map(expense => {
+                        return <ExpenseCard key={expense.expense_id} expense={expense} match={this.props.match}></ExpenseCard>
+                    })}
+                </div>
+            </div>
+              
         )
     } 
 
