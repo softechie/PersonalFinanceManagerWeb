@@ -21,22 +21,20 @@ class Login extends Component {
   }
 
 
-
- 
   render() {
     return (
-      <div className="wrap" >
-      <Row>
-        <Col>
-          <div className="m-t-10">
+      <div  >
+      
+      
+          <div >
             <LoginForm title="Personal Finance Manager"
                               submitName="Login"
                               submitName1="Register"
                               onSubmit={this.handleSubmit}>
             </LoginForm>
           </div>
-        </Col>
-      </Row>
+      
+     
        
        </div>
     );

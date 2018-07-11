@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import InputText from './Inputs/InputText'
-import { Row, Col,CardBody, CardTitle, FormGroup, Button } from 'reactstrap'
+import { Row, Col,Card,CardBody,size,order,offset,CardTitle,Nav,NavLink, FormGroup,NavItem, Button } from 'reactstrap'
 import { Field, reduxForm } from 'redux-form'
 
 const email = value =>
@@ -14,61 +14,44 @@ const required = value => (value || typeof value === 'number' ? undefined : 'Req
 const LoginForm=(props)=>{
  
     return (
+    <Card>
+      <CardBody>
+<Col xs="12" sm={{ size: 12, offset: 4 }} md="4" className="m-align">
 
-        <Col xs="12" sm="6" md="4" className="m-align">
-       
-          <CardBody >
-              <Row>
-              <FormGroup >
-              <Col xs="12" className="text-center">
-            <CardTitle >{props.title}</CardTitle>
-            </Col>
-            </FormGroup>
-            <form onSubmit={props.handleSubmit}>
-            <FormGroup >
-            <Row>
-            <label  className="mr-sm-2">Email</label>
-                <Field  id="email"
+            <h2 className="text-center">{props.title}</h2>
+<form  onSubmit={props.handleSubmit}>
+            <FormGroup>
+           <Field  id="email"
                        type="email"
                        name="emailId"
                        placeholder="Enter your email"
                        validate={[required,email]}
                        component={InputText}>
                 </Field>
-                </Row>
-                </FormGroup>
-
-  <FormGroup >
-  <Row>
-<label  className="mr-sm-2">Password</label>
+               </FormGroup>
+  
+<FormGroup>
                 <Field id="password"
                        type="password"
                        name="password"
                        placeholder="Enter password"
-                      
+                       validate={required}
                        component={InputText}>
                 </Field>
-                
-                </Row>
-              
-              </FormGroup>
-             
-              
-          <Row>    
-        <Button color="primary"  type="submit">{props.submitName}</Button>
-        
-        <Button color="primary" className="m-l-20"  type="submit">{props.submitName1}</Button>
-       
-        <Button color="primary" className="m-t-10" className="m-l-25">Forgot password?</Button>
-
-       </Row>
-      </form>
-      </Row>
-</CardBody>
-
-    </Col>
+                </FormGroup>
+   <Row>
     
-   
+   <Col sm={{ size: 'auto', offset: 1 }} className="m-align">
+<Button color="primary"  type="submit">{props.submitName}</Button>
+</Col>
+<Col sm={{ size: 'auto', offset: 1 }}><Nav>
+          <NavLink href="/">Forgot password?</NavLink>
+          </Nav> </Col>
+        </Row>
+    </form>
+    </Col>
+      </CardBody>
+      </Card> 
 );
 
 
