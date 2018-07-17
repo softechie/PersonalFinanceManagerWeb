@@ -6,11 +6,13 @@ import Income from '../containers/Income'
 import Expense from '../containers/Expense'
 import Investments from '../containers/Investments'
 import BankAccount from '../containers/BankAccount'
+import Login from '../containers/Login';
 
 const PageRoutes = () => {
   return (
     <Switch>
       <Route path="/" exact component={Home}></Route>
+      <Route path="/login" exact component={Login}></Route>
       <Route path="/income" component={Income}></Route>
       <Route path="/expense" component={Expense}></Route>
       <Route path="/investments" component={Investments}></Route>

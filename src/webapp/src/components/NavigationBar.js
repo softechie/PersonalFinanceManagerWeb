@@ -46,9 +46,18 @@ class NavigationBar extends React.Component {
             </NavItem>
           </Nav>
           <Nav className="ml-auto" navbar>
+
+            <NavItem>
+              <NavLink to="/login">Login <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i></NavLink>
+            </NavItem>
+
+
             <NavItem>
               <NavLink to="/">Logout <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i></NavLink>
             </NavItem>
+
+            
+            
           </Nav>
         </Collapse>
       </Navbar>

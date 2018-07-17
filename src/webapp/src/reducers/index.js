@@ -11,6 +11,8 @@ const defaultNotification = {
   position: 'bl',
   dismissible: true,
   dismissAfter: 5000,
+  allowHTML: false,
+  closeButton: false
 };
 
 export default combineReducers({

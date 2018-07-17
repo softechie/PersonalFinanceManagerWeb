@@ -42,10 +42,12 @@ class SearchBankAccount extends React.Component {
       .then(res => {
         console.log(res)
         if(res.status === 200)
+          this.props.successToast('Successfully deleted')
           this.props.getBankAccountList()
       })
       .catch(err => {
         console.log(err)
+        this.props.dangerToast('Error occurred while deleting data')
       })
   }
 
@@ -90,7 +92,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getBankAccountList: () => dispatch(actions.getAllBankAccount()),
-  searchBankAccount: (bankAccountKey) => dispatch(actions.searchBankAccount(bankAccountKey))
+  searchBankAccount: (bankAccountKey) => dispatch(actions.searchBankAccount(bankAccountKey)),
+  successToast: (msg) => dispatch(actions.successToast(msg)),
+  dangerToast: (msg) => dispatch(actions.dangerToast(msg))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (SearchBankAccount)

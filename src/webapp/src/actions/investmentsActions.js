@@ -1,29 +1,39 @@
-import { GET_ALL_INVESTMENTS, GET_INVESTMENTS, SEARCH_INVESTMENTS } from './types'
+import * as actions from './types'
 import API from '../api'
+import {notify} from 'reapop';
 
 export const getAllInvestments = () => {
   return (dispatch) => {
-    dispatch({
-      type: GET_ALL_INVESTMENTS,
-      payload: API.get('/investments/all')
-    })
+    dispatch({type: actions.GET_ALL_INVESTMENTS_PENDING})
+    API.get('/investments/all')
+      .then(res => dispatch({type: actions.GET_ALL_INVESTMENTS_FULFILLED, payload: res}))
+      .catch(err => {
+        dispatch({type: actions.GET_ALL_INVESTMENTS_REJECTED, payload: err})
+        dispatch(notify({message: 'Error occurred while fetching data', status: 'error'}));
+      })
   }
 }
 
 export const getInvestments = (investmentsId) => {
   return (dispatch) => {
-    dispatch({
-      type: GET_INVESTMENTS,
-      payload: API.get(`/investments/${investmentsId}`)
-    })
+    dispatch({type: actions.GET_INVESTMENTS_PENDING})
+    API.get(`/investments/${investmentsId}`)
+      .then(res => dispatch({type: actions.GET_INVESTMENTS_FULFILLED, payload: res}))
+      .catch(err => {
+        dispatch({type: actions.GET_INVESTMENTS_REJECTED, payload: err})
+        dispatch(notify({message: 'Error occurred while fetching data', status: 'error'}));
+      })
   }
 }
 
 export const searchInvestments = (investmentsKey) => {
   return (dispatch) => {
-    dispatch({
-      type: SEARCH_INVESTMENTS,
-      payload: API.get(`/investments/search/${investmentsKey}`)
-    })
+    dispatch({type: actions.SEARCH_INVESTMENTS_PENDING})
+    API.get(`/investments/search/${investmentsKey}`)
+      .then(res => dispatch({type: actions.SEARCH_INVESTMENTS_FULFILLED, payload: res}))
+      .catch(err => {
+        dispatch({type: actions.SEARCH_INVESTMENTS_REJECTED, payload: err})
+        dispatch(notify({message: 'Error occurred while fetching data', status: 'error'}));
+      })
   }
 }

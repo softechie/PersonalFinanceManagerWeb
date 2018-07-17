@@ -1,5 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
+import * as actions from '../../actions'
 import api from '../../api'
 import BankAccountFieldsCard from '../../components/BankAccount/BankAccountFieldsCard'
 
@@ -12,10 +14,12 @@ class AddBankAccount extends React.Component {
       .then(res => {
         console.log(res)
         if(res.status === 200)
+          this.props.successToast('Successfully added')
           this.props.history.push('/bankAccount/all')
       })
       .catch(err => {
         console.log(err)
+        this.props.dangerToast('Error occurred while adding data')
       })
   }
 
@@ -35,4 +39,9 @@ class AddBankAccount extends React.Component {
   }
 }
 
-export default AddBankAccount 
+const mapDispatchToProps = dispatch => ({
+  successToast: (msg) => dispatch(actions.successToast(msg)),
+  dangerToast: (msg) => dispatch(actions.dangerToast(msg))
+})
+
+export default connect(null, mapDispatchToProps) (AddBankAccount)

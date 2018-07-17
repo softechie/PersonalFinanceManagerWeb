@@ -19,10 +19,12 @@ class EditInvestments extends React.Component {
       .then(res => {
         console.log(res)
         if(res.status === 200)
+          this.props.successToast('Successfully updated')
           this.props.history.push('/investments/all')
       })
       .catch(err => {
         console.log(err)
+        this.props.dangerToast('Error occurred while updating data')
       })
   }
   render() {
@@ -47,9 +49,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getInvestments: (investmentsId) => {
-    dispatch(actions.getInvestments(investmentsId))
-  }
+  getInvestments: (investmentsId) => dispatch(actions.getInvestments(investmentsId)),
+  successToast: (msg) => dispatch(actions.successToast(msg)),
+  dangerToast: (msg) => dispatch(actions.dangerToast(msg))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (EditInvestments)
