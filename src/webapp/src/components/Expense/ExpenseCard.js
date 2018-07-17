@@ -1,13 +1,18 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
-import { Card, CardBody, CardText, UncontrolledTooltip  } from 'reactstrap'
-
+import { Card, CardBody, CardText, UncontrolledTooltip  } from 'reactstrap';
+import ExpenseFieldsCard from '../../components/Expense/ExpenseFieldsCard'
 import { getFormatedDate } from '../../helper'
 
 const ExpenseCard = (props) => {
+  const handleDelete = () => {
+    props.getExpenseId(props.expense.expense_id)
+  }
+ 
   return (
     <Card className="m-b-5">
-      <CardBody>
+      <CardBody className="bg-list">
         <CardText className="flex-sb-m">
           <span>
             <i className="fa fa-bookmark-o text-primary" aria-hidden="true"></i> {props.expense.expense_name}
@@ -16,14 +21,14 @@ const ExpenseCard = (props) => {
             <i className="fa fa-calendar m-l-30 text-info" aria-hidden="true"></i> {getFormatedDate(props.expense.expense_date)}
           </span>
           <span>
-            <Link to={`/income/edit/${props.expense.expense_id}`}>
-              <i id={`incomeEdit_${props.expense.expense_id}`} className="fa fa-pencil icon-btn text-warning" aria-hidden="true"></i>
-            </Link>
-            <i id={`incomeDelete_${props.expense.expense_id}`} className="fa fa-trash-o icon-btn m-l-15 text-danger" aria-hidden="true"></i>
-            <UncontrolledTooltip placement="top" target={`incomeEdit_${props.expense.expense_id}`}>
+          <Link to={`/expense/edit/${props.expense.expense_id}`}>
+            <i id={`expenseEdit_${props.expense.expense_id}`} className="fa fa-pencil icon-btn text-warning" aria-hidden="true"></i>
+          </Link>
+            <i id={`expenseDelete_${props.expense.expense_id}`} className="fa fa-trash-o icon-btn m-l-15 text-danger" onClick={handleDelete} aria-hidden="true"></i>
+            <UncontrolledTooltip placement="top" target={`expenseEdit_${props.expense.expense_id}`}>
               Edit
             </UncontrolledTooltip>
-            <UncontrolledTooltip placement="top" target={`incomeDelete_${props.expense.expense_id}`}>
+            <UncontrolledTooltip placement="top" target={`expenseDelete_${props.expense.expense_id}`}>
               Delete
             </UncontrolledTooltip>
           </span>
@@ -32,9 +37,18 @@ const ExpenseCard = (props) => {
           <small className="text-muted">Created on: {getFormatedDate(props.expense.created_date)}</small>
           <small className="text-muted">Last updated: {getFormatedDate(props.expense.updated_date)}</small>
         </CardText>
+        {/* {props.expense.editField ? <ExpenseFieldsCard title="Edit Expense"
+                                submitName="Edit"
+                                onSubmit={this.handleSubmit}>
+        </ExpenseFieldsCard> : null} */}
       </CardBody>
     </Card>
   )
 }
 
-export default ExpenseCard
+ExpenseCard.propTypes = {
+  expense: PropTypes.object.isRequired,
+  getExpenseId: PropTypes.func.isRequired
+}
+
+export default (ExpenseCard)

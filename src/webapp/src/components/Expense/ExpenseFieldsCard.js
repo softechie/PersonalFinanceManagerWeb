@@ -1,56 +1,79 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Row, Col, Card, CardBody, CardTitle, FormGroup, Label, Input, Button } from 'reactstrap'
+import { Row, Col, Card, CardBody, CardTitle, FormGroup, Button } from 'reactstrap'
+import InputText from '../Inputs/InputText'
+import InputSelect from '../Inputs/InputSelect'
+import InputDate from '../Inputs/InputDate'
+import { Field, reduxForm } from 'redux-form'
 
+const required = value => (value || typeof value === 'number' ? undefined : 'Required')
+const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined
 const ExpenseFieldsCard = (props) => {
   return (
-    <Card className="m-b-5">
+    <Card>
       <CardBody>
         <CardTitle className="text-center">{props.title}</CardTitle>
+        <hr/>
+        <form onSubmit={props.handleSubmit}>
           <Row>
             <Col xs="12" sm="6" lg="3">
               <FormGroup>
-                <Label for="expense_name">Expense Name</Label>
-                <Input type="text" name="expense_name" id="expenseName" placeholder="Eg: Food or Shopping Expenses" 
-                  value={props.expenseFieldValue.expense_name} onChange={props.expenseFieldChange}>
-                </Input>
+              <Field id="expense_name"
+                       type="text"
+                       name="expense_name"
+                       title="Expense Name"
+                       placeholder="Eg: Food or Shopping Expenses"
+                       validate={required}
+                       component={InputText}>
+                </Field>
+                
               </FormGroup>
             </Col>
             <Col xs="12" sm="6" lg="3">
               <FormGroup>
-                <Label for="expense_amount">Expense Amount</Label>
-                <Input type="number" name="expense_amount" id="expenseAmount" placeholder="Eg: 500" 
-                  value={props.expenseFieldValue.expense_amount} onChange={props.expenseFieldChange}>
-                </Input>
+              <Field id="expense_amount"
+                       type="text"
+                       name="expense_amount"
+                       title="Expense Amount"
+                       placeholder="Eg: 2000"
+                       validate={[required, number]}
+                       component={InputText}>
+                </Field>
+                
               </FormGroup>
             </Col>
             <Col xs="12" sm="6" lg="3">
               <FormGroup>
-                <Label for="expenseType">Expense Type</Label>
-                <Input type="select" name="expense_type" id="expenseType"
-                       value={props.expenseFieldValue.expense_type} onChange={props.expenseFieldChange}>
-                       
-                  <option value="Card">Card</option>
-                  <option value="Cash">Cash</option>
-                </Input>
+              <Field id="expense_type"
+                       type="select"
+                       name="expense_type"
+                       title="Mode Of Payment"
+                       validate={required}
+                       component={InputSelect}>
+                      <option value="Cash">Cash</option>
+                      <option value="Card">Card</option>
+                      <option value="Net Banking">Net Banking</option>
+                      <option value="Others">Others</option>
+              </Field>
               </FormGroup>
             </Col>
             <Col xs="12" sm="6" lg="3">
               <FormGroup>
-                <Label for="expenseDate">Expense Date</Label>
-                <Input type="date"
+              <Field id="expense_date"
+                       type="date"
                        name="expense_date"
-                       id="expenseDate"
-                       placeholder="date placeholder"
-                       selected={props.expenseFieldValue.expense_date}
-                       onChange={props.expenseFieldChange}>
-                </Input>
+                       title="Expense Date"
+                       validate={required}
+                       component={InputDate}>
+                </Field>
+                
               </FormGroup>
             </Col>
             <Col xs="12" className="text-center">
-              <Button color="primary" onClick={props.expenseFieldSubmit}><i className="fa fa-plus-circle clr" aria-hidden="true"></i>  {props.submitName}</Button>
+              <Button color="custom" type="submit">{props.submitName}</Button>
             </Col>
           </Row>
+        </form>
       </CardBody>
     </Card>
   )
@@ -59,9 +82,13 @@ const ExpenseFieldsCard = (props) => {
 ExpenseFieldsCard.propTypes = {
   title: PropTypes.string.isRequired,
   submitName: PropTypes.string.isRequired,
-  expenseFieldValue: PropTypes.object.isRequired,
-  expenseFieldChange: PropTypes.func.isRequired,
-  expenseFieldSubmit: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired
 }
 
-export default ExpenseFieldsCard
+export default reduxForm({
+  form: 'expenseForm',
+  enableReinitialize: true,
+  initialValues: {
+    expense_type: 'Cash'
+  }
+})(ExpenseFieldsCard)

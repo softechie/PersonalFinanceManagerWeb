@@ -24,8 +24,8 @@ class NavigationBar extends React.Component {
   }
   render() {
     return (
-      <Navbar color="menu" dark expand="lg" fixed="top">
-        <NavbarBrand href="/">PFM</NavbarBrand>
+      <Navbar color="menu" dark expand="lg">
+        <NavbarBrand href="/" className="pfm">PFM</NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav navbar>
@@ -36,7 +36,7 @@ class NavigationBar extends React.Component {
               <NavLink to="/income/all" className="nav-link" activeClassName="active">Income</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink to="/expense" className="nav-link" activeClassName="">Expense</NavLink>
+              <NavLink to="/expense/all" className="nav-link" activeClassName="">Expense</NavLink>
             </NavItem>
             <NavItem>
               <NavLink to="/investments/all" className="nav-link" activeClassName="active">Investments</NavLink>

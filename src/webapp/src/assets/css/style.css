@@ -45,7 +45,7 @@
 }
 
 .bg-menu{
-  background: linear-gradient(141deg,#ae1f58 50%, #107bae 80%) !important;
+  background: linear-gradient(141deg,#cd0f5e 50%, #107bae 80%) !important;
   /* border-radius: 0px !important; */
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
   padding : 0px 50px;
@@ -69,7 +69,7 @@
 }
 
 .menuColor{
-  background:   linear-gradient(141deg,#0f1011 50%, #1242ae 60%) !important;
+  background:  linear-gradient(141deg,#0f1011 50%, #1242ae 60%) !important;
   box-shadow: 4px 2px 10px 0px rgba(0,0,0,0.2), 0 10px 8px 0 rgba(0,0,0,0.19) !important;
 }
 
@@ -80,4 +80,55 @@
 
 ._334wgwnLMwt6-9RMIjz3RJ {
   box-shadow: 0 2px 37px -1px rgba(0, 0, 0, 0.3) !important;
+}
+
+.pfm{
+  color: #000 !important;
+  font-family: 'montserrat';
+  font-size: 2.2vw;
+  font-weight: bold;
+  letter-spacing: 2px;
+  /* padding: 0px 0px 0px 0px !important; */
+  max-width: 700px;
+  text-align: center;
+  background: linear-gradient(120deg, #ffffff 0%, #e1bdd1 25%, #eee8e8 50%, #fcfefc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -ms-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  animation-name : masked-animation;
+  animation-duration : 50s;
+  animation-iteration-count : infinite;
+  animation-timing-function : linear;
+}
+
+@-webkit-keyframes masked-animation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -8000px -3000px;
+  }
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: #fff;
+  background-color: #cd0f5e;
+}
+
+a {
+  color: #cd0f5e;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.btn-custom {
+  color: #fff;
+  background-color: #cd0f5e;
+  border-color: #cd0f5e;
+  width : 120px;
+}
+
+.card{
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3), 0 0 50px rgba(0, 0, 0, 0) inset
 }

@@ -5,7 +5,7 @@ import { InputGroup, InputGroupAddon, Button } from 'reactstrap'
 import InputText from './Inputs/InputText'
 import { Field, reduxForm } from 'redux-form'
 
-const required = value => (value || typeof value === 'number' ? undefined : 'Required')
+//const required = value => (value || typeof value === 'number' ? undefined : 'Required')
 
 const SearchBar = (props) => {
   return(
@@ -14,8 +14,8 @@ const SearchBar = (props) => {
         <Field type="text"
                name="search"
                placeholder={props.placeholder}
-               validate={required}
-               component={InputText}>
+               component={InputText}
+               onChange={props.filterList}>
         </Field>
         <InputGroupAddon addonType="append">
           <Button type="submit"><i className="fa fa-search" aria-hidden="true"></i></Button>
