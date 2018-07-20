@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import * as actions from '../../actions'
-import api from '../../api'
+import api from '../../api/apiController'
 import IncomeFieldsCard from '../../components/Income/IncomeFieldsCard'
 
 class EditIncome extends React.Component {
@@ -17,14 +17,7 @@ class EditIncome extends React.Component {
     values.incomeDate = new Date(values.incomeDate)
     api.post('/income/edit', values)
       .then(res => {
-        console.log(res)
-        if(res.status === 200)
-          this.props.successToast('Successfully updated')
-          this.props.history.push('/income/all')
-      })
-      .catch(err => {
-        console.log(err)
-        this.props.dangerToast('Error occurred while updating data')
+        this.props.history.push('/income/all')
       })
   }
   render() {
@@ -49,9 +42,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getIncome: (incomeId) => dispatch(actions.getIncome(incomeId)),
-  successToast: (msg) => dispatch(actions.successToast(msg)),
-  dangerToast: (msg) => dispatch(actions.dangerToast(msg))
+  getIncome: (incomeId) => dispatch(actions.getIncome(incomeId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (EditIncome)

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import * as actions from '../../actions'
-import api from '../../api'
+import api from '../../api/apiController'
 import SearchBar from '../../components/SearchBar'
 import IncomeCard from '../../components/Income/IncomeCard'
 import DeleteModal from '../../components/DeleteModal'
@@ -40,14 +40,7 @@ class SearchIncome extends React.Component {
     })
     api.delete(`/income/delete/${this.state.deleteIncomeId}`)
       .then(res => {
-        console.log(res)
-        if(res.status === 200)
-          this.props.successToast('Successfully deleted')
-          this.props.getIncomeList()
-      })
-      .catch(err => {
-        console.log(err)
-        this.props.dangerToast('Error occurred while deleting data')
+        this.props.getIncomeList()
       })
   }
 
@@ -92,9 +85,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getIncomeList: () => dispatch(actions.getAllIncome()),
-  searchIncome: (incomeKey) => dispatch(actions.searchIncome(incomeKey)),
-  successToast: (msg) => dispatch(actions.successToast(msg)),
-  dangerToast: (msg) => dispatch(actions.dangerToast(msg))
+  searchIncome: (incomeKey) => dispatch(actions.searchIncome(incomeKey))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (SearchIncome)

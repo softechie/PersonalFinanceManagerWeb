@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import * as actions from '../../actions'
-import api from '../../api'
+import api from '../../apiController'
 import SearchBar from '../../components/SearchBar'
 import InvestmentsCard from '../../components/Investments/InvestmentsCard'
 import DeleteModal from '../../components/DeleteModal'
@@ -40,14 +40,7 @@ class SearchInvestments extends React.Component {
     })
     api.delete(`/investments/delete/${this.state.deleteInvestmentsId}`)
       .then(res => {
-        console.log(res)
-        if(res.status === 200)
-          this.props.successToast('Successfully deleted')
-          this.props.getInvestmentsList()
-      })
-      .catch(err => {
-        console.log(err)
-        this.props.dangerToast('Error occurred while deleting data')
+        this.props.getInvestmentsList()
       })
   }
 
@@ -92,9 +85,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getInvestmentsList: () => dispatch(actions.getAllInvestments()),
-  searchInvestments: (investmentsKey) => dispatch(actions.searchInvestments(investmentsKey)),
-  successToast: (msg) => dispatch(actions.successToast(msg)),
-  dangerToast: (msg) => dispatch(actions.dangerToast(msg))
+  searchInvestments: (investmentsKey) => dispatch(actions.searchInvestments(investmentsKey))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (SearchInvestments)

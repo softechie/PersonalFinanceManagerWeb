@@ -1,8 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
-import * as actions from '../../actions'
-import api from '../../api'
+import api from '../../apiController'
 import IncomeFieldsCard from '../../components/Income/IncomeFieldsCard'
 
 class AddIncome extends React.Component {
@@ -12,14 +10,7 @@ class AddIncome extends React.Component {
     values.incomeDate = new Date(values.incomeDate)
     api.put('/income/new', values)
       .then(res => {
-        console.log(res)
-        if(res.status === 200)
-          this.props.successToast('Successfully added')
-          this.props.history.push('/income/all')
-      })
-      .catch(err => {
-        console.log(err)
-        this.props.dangerToast('Error occurred while adding data')
+        this.props.history.push('/income/all')
       })
   }
 
@@ -39,9 +30,4 @@ class AddIncome extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  successToast: (msg) => dispatch(actions.successToast(msg)),
-  dangerToast: (msg) => dispatch(actions.dangerToast(msg))
-})
-
-export default connect(null, mapDispatchToProps) (AddIncome)
+export default AddIncome

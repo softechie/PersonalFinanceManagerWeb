@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import * as actions from '../../actions'
-import api from '../../api'
+import api from '../../apiController'
 import InvestmentsFieldsCard from '../../components/Investments/InvestmentsFieldsCard'
 
 class EditInvestments extends React.Component {
@@ -17,14 +17,7 @@ class EditInvestments extends React.Component {
     values.investmentsDate = new Date(values.investmentsDate)
     api.post('/investments/edit', values)
       .then(res => {
-        console.log(res)
-        if(res.status === 200)
-          this.props.successToast('Successfully updated')
-          this.props.history.push('/investments/all')
-      })
-      .catch(err => {
-        console.log(err)
-        this.props.dangerToast('Error occurred while updating data')
+        this.props.history.push('/investments/all')
       })
   }
   render() {
@@ -49,9 +42,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getInvestments: (investmentsId) => dispatch(actions.getInvestments(investmentsId)),
-  successToast: (msg) => dispatch(actions.successToast(msg)),
-  dangerToast: (msg) => dispatch(actions.dangerToast(msg))
+  getInvestments: (investmentsId) => dispatch(actions.getInvestments(investmentsId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (EditInvestments)
