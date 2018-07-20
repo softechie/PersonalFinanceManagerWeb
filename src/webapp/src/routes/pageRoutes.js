@@ -7,6 +7,7 @@ import Expense from '../containers/Expense'
 import Investments from '../containers/Investments'
 import BankAccount from '../containers/BankAccount'
 import Login from '../containers/Login';
+import RegisterUser from '../containers/RegisterUser';
 
 const PageRoutes = () => {
   return (
@@ -17,6 +18,7 @@ const PageRoutes = () => {
       <Route path="/expense" component={Expense}></Route>
       <Route path="/investments" component={Investments}></Route>
       <Route path="/bankAccount" component={BankAccount}></Route>
+      <Route path="/registerUser" component={RegisterUser}></Route>
     </Switch>
   )
 }
