@@ -9,20 +9,10 @@ const email = value =>
     ? 'Invalid email address'
     : undefined)
 
-const fname = value =>
-  (value && !/^[A-Z._%+-]+@[A-Z]+\.[A-Z]{2,4}$/i.test(value)
-    ? 'Invalid email address'
-    : undefined)
+
 	
-const lname = value =>
-  (value && !/^[A-Z._%+-]+@[A-Z]+\.[A-Z]{2,4}$/i.test(value)
-    ? 'Invalid email address'
-    : undefined)	
 	
-const mobnumber = value =>
-  (value && !/^[0-9._%+-]+@[A-Z]+\.[A-Z]{2,4}$/i.test(value)
-    ? 'Invalid email address'
-    : undefined)	
+	
 
 const required = value => (value || typeof value === 'number' ? undefined : 'Required')
 const RegisterUserForm=(props)=>{
@@ -42,44 +32,68 @@ const RegisterUserForm=(props)=>{
             <FormGroup >
             <Row>
             <label  className="mr-sm-2">First Name</label>
-                <Field  id="fname"
+                <Field  id="firstName"
                        type="text"
-                       name="fname"
+                       name="firstName"
                        placeholder="Enter your First Name"
-                       validate={[required,fname]}
+                      
                        component={InputText}>
                 </Field>
                 </Row>
 				
 				<Row>
             <label  className="mr-sm-2">Last Name</label>
-                <Field  id="lname"
+                <Field  id="lastName"
                        type="text"
-                       name="lname"
+                       name="lastName"
                        placeholder="Enter your Last Name"
-                       validate={[required,lname]}
+                      
                        component={InputText}>
                 </Field>
                 </Row>
 				
 				<Row>
             <label  className="mr-sm-2">Mobile Number</label>
-                <Field  id="mobnumber"
+                <Field  id="mobileNumber"
                        type="number"
-                       name="mobnumber"
+                       name="mobileNumber"
                        placeholder="Enter your Mobile Number"
-                       validate={[required,mobnumber]}
+                      
                        component={InputText}>
                 </Field>
                 </Row>
 				
 				<Row>
             <label  className="mr-sm-2">Email</label>
-                <Field  id="email"
+                <Field  id="emailId"
                        type="email"
-                       name="email"
+                       name="emailId"
                        placeholder="Enter your email"
                        validate={[required,email]}
+                       component={InputText}>
+                </Field>
+                </Row>
+
+                 <Row>
+            <label  className="mr-sm-2">OTP</label>
+                <Field  id="otp"
+                       type="text"
+                       name="otp"
+                       placeholder="Enter your otp"
+                      
+                       component={InputText}>
+                </Field>
+                </Row>
+
+                  
+
+                    <Row>
+            <label  className="mr-sm-2">UserStatus</label>
+                <Field  id="userStatus"
+                       type="text"
+                       name="userStatus"
+                       placeholder="Enter your UserStatus"
+                      
                        component={InputText}>
                 </Field>
                 </Row>

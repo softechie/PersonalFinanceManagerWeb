@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import {Button, FormGroup,Label,Row,Container,Col,CardText,CardBody } from "reactstrap";
 import { Route, Switch } from 'react-router-dom';
-import api from '../api'
+import api from '../api/apiController'
 import RegisterUserForm from "../components/RegisterUserForm"
 class RegisterUser extends Component {
 
   
   handleSubmit = (values) => {
+  
     console.log(values)
    
     api.post('/register/new', values)
