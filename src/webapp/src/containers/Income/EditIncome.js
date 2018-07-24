@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import * as actions from '../../actions'
-import api from '../../api/apiController'
 import IncomeFieldsCard from '../../components/Income/IncomeFieldsCard'
 
 class EditIncome extends React.Component {
@@ -15,10 +14,7 @@ class EditIncome extends React.Component {
     console.log(values)
     //converting into datatime format
     values.incomeDate = new Date(values.incomeDate)
-    api.post('/income/edit', values)
-      .then(res => {
-        this.props.history.push('/income/all')
-      })
+    this.props.editIncome(values)
   }
   render() {
     return (
@@ -42,7 +38,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getIncome: (incomeId) => dispatch(actions.getIncome(incomeId))
+  getIncome: (incomeId) => dispatch(actions.getIncome(incomeId)),
+  editIncome: (incomeData) => dispatch(actions.editIncome(incomeData))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (EditIncome)

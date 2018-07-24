@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import * as actions from '../../actions'
-import api from '../../apiController'
 import SearchBar from '../../components/SearchBar'
 import BankAccountCard from '../../components/BankAccount/BankAccountCard'
 import DeleteModal from '../../components/DeleteModal'
@@ -38,10 +37,7 @@ class SearchBankAccount extends React.Component {
     this.setState({
       bankAccountDeleteModal: false
     })
-    api.delete(`/bankAccount/delete/${this.state.deleteBankAccountId}`)
-      .then(res => {
-        this.props.getBankAccountList()
-      })
+    this.props.deleteBankAccount(this.state.deleteBankAccountId)
   }
 
   handleSubmit = (values) => {
@@ -85,7 +81,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getBankAccountList: () => dispatch(actions.getAllBankAccount()),
-  searchBankAccount: (bankAccountKey) => dispatch(actions.searchBankAccount(bankAccountKey))
+  searchBankAccount: (bankAccountKey) => dispatch(actions.searchBankAccount(bankAccountKey)),
+  deleteBankAccount: (bankAccountId) => dispatch(actions.deleteBankAccount(bankAccountId)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (SearchBankAccount)

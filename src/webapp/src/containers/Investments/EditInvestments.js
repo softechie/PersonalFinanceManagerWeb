@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import * as actions from '../../actions'
-import api from '../../apiController'
 import InvestmentsFieldsCard from '../../components/Investments/InvestmentsFieldsCard'
 
 class EditInvestments extends React.Component {
@@ -15,10 +14,7 @@ class EditInvestments extends React.Component {
     console.log(values)
     //converting into datatime format
     values.investmentsDate = new Date(values.investmentsDate)
-    api.post('/investments/edit', values)
-      .then(res => {
-        this.props.history.push('/investments/all')
-      })
+    this.props.editInvestments(values)
   }
   render() {
     return (
@@ -42,7 +38,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getInvestments: (investmentsId) => dispatch(actions.getInvestments(investmentsId))
+  getInvestments: (investmentsId) => dispatch(actions.getInvestments(investmentsId)),
+  editInvestments: (investmentsData) => dispatch(actions.editInvestments(investmentsData)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (EditInvestments)

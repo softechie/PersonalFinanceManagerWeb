@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import * as actions from '../../actions'
-import api from '../../apiController'
 import SearchBar from '../../components/SearchBar'
 import InvestmentsCard from '../../components/Investments/InvestmentsCard'
 import DeleteModal from '../../components/DeleteModal'
@@ -38,10 +37,7 @@ class SearchInvestments extends React.Component {
     this.setState({
       investmentsDeleteModal: false
     })
-    api.delete(`/investments/delete/${this.state.deleteInvestmentsId}`)
-      .then(res => {
-        this.props.getInvestmentsList()
-      })
+    this.props.deleteInvestments(this.state.deleteInvestmentsId)
   }
 
   handleSubmit = (values) => {
@@ -85,7 +81,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getInvestmentsList: () => dispatch(actions.getAllInvestments()),
-  searchInvestments: (investmentsKey) => dispatch(actions.searchInvestments(investmentsKey))
+  searchInvestments: (investmentsKey) => dispatch(actions.searchInvestments(investmentsKey)),
+  deleteInvestments: (investmentsId) => dispatch(actions.deleteInvestments(investmentsId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (SearchInvestments)

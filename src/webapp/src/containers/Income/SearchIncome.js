@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import * as actions from '../../actions'
-import api from '../../api/apiController'
 import SearchBar from '../../components/SearchBar'
 import IncomeCard from '../../components/Income/IncomeCard'
 import DeleteModal from '../../components/DeleteModal'
@@ -38,10 +37,7 @@ class SearchIncome extends React.Component {
     this.setState({
       incomeDeleteModal: false
     })
-    api.delete(`/income/delete/${this.state.deleteIncomeId}`)
-      .then(res => {
-        this.props.getIncomeList()
-      })
+    this.props.deleteIncome(this.state.deleteIncomeId)
   }
 
   handleSubmit = (values) => {
@@ -85,7 +81,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getIncomeList: () => dispatch(actions.getAllIncome()),
-  searchIncome: (incomeKey) => dispatch(actions.searchIncome(incomeKey))
+  searchIncome: (incomeKey) => dispatch(actions.searchIncome(incomeKey)),
+  deleteIncome: (incomeId) => dispatch(actions.deleteIncome(incomeId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (SearchIncome)

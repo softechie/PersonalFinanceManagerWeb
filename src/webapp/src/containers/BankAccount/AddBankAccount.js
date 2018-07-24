@@ -1,6 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import * as actions from '../../actions'
 import { Row, Col } from 'reactstrap'
-import api from '../../apiController'
 import BankAccountFieldsCard from '../../components/BankAccount/BankAccountFieldsCard'
 
 class AddBankAccount extends React.Component {
@@ -8,10 +9,7 @@ class AddBankAccount extends React.Component {
     console.log(values)
     //converting into datatime format
     values.bankAccountDate = new Date(values.bankAccountDate)
-    api.put('/bankAccount/new', values)
-      .then(res => {
-        this.props.history.push('/bankAccount/all')
-      })
+    this.props.addBankAccount(values)
   }
 
   render() {
@@ -30,4 +28,8 @@ class AddBankAccount extends React.Component {
   }
 }
 
-export default AddBankAccount
+const mapDispatchToProps = dispatch => ({
+  addBankAccount: (bankAccountData) => dispatch(actions.addBankAccount(bankAccountData))
+})
+
+export default connect(null, mapDispatchToProps) (AddBankAccount)

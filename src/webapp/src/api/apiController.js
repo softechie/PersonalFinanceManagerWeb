@@ -15,7 +15,7 @@ class API {
             else
               store.dispatch(actions.dangerToast('Error occurred while fetching data'))
           } else {
-            store.dispatch(actions.dangerToast('Error occurred while fetching data'))
+            store.dispatch(actions.dangerToast('Network error, unable to reach servers'))
           }
 
           reject(err)
@@ -38,9 +38,9 @@ class API {
             if(err.response.data.message)
               store.dispatch(actions.dangerToast(err.response.data.message))
             else
-              store.dispatch(actions.dangerToast('Error occurred while fetching data'))
+              store.dispatch(actions.dangerToast('Error occurred'))
           } else {
-            store.dispatch(actions.dangerToast('Error occurred while fetching data'))
+            store.dispatch(actions.dangerToast('Network error, unable to reach servers'))
           }
 
           reject(err)
@@ -63,9 +63,9 @@ class API {
             if(err.response.data.message)
               store.dispatch(actions.dangerToast(err.response.data.message))
             else
-              store.dispatch(actions.dangerToast('Error occurred while fetching data'))
+              store.dispatch(actions.dangerToast('Error occurred'))
           } else {
-            store.dispatch(actions.dangerToast('Error occurred while fetching data'))
+            store.dispatch(actions.dangerToast('Network error, unable to reach servers'))
           }
 
           reject(err)
@@ -90,9 +90,9 @@ class API {
             if(err.response.data.message)
               store.dispatch(actions.dangerToast(err.response.data.message))
             else
-              store.dispatch(actions.dangerToast('Error occurred while fetching data'))
+              store.dispatch(actions.dangerToast('Error occurred while deleting data'))
           } else {
-            store.dispatch(actions.dangerToast('Error occurred while fetching data'))
+            store.dispatch(actions.dangerToast('Network error, unable to reach servers'))
           }
 
           reject(err)

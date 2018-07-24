@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
-import { BrowserRouter } from 'react-router-dom'
+import { Router } from 'react-router-dom'
+import { history } from './helper'
 import PageRoutes from './routes/pageRoutes'
 
 import { Container, Row, Col } from 'reactstrap'
@@ -12,7 +13,7 @@ import theme from 'reapop-theme-wybo';
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Container fluid={true} className="container__main">
           <Row>
             <Col>
@@ -26,7 +27,7 @@ class App extends Component {
           </Row>
           <NotificationsSystem theme={theme} />
         </Container>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
