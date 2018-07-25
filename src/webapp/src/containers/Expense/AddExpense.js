@@ -1,15 +1,15 @@
 import React from 'react'
 import { Row, Col } from 'reactstrap'
-import api from '../../api'
+import API from '../api/apiController'
 import { getFormatedDateForApi } from '../../helper'
 import ExpenseFieldsCard from '../../components/Expense/ExpenseFieldsCard'
 
 class AddExpense extends React.Component {
   handleSubmit = (values) => {
     console.log(values)
-    //converting into datatime format
+    // converting into datatime format
     values.expense_date = getFormatedDateForApi(values.expense_date)
-    api.put('/expense/new', values)
+    API.put('/expense/new', values)
       .then(res => {
         console.log(res)
         if(res.status === 201)

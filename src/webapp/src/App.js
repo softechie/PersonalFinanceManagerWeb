@@ -6,7 +6,7 @@ import PageRoutes from './routes/pageRoutes'
 
 import { Container, Row, Col } from 'reactstrap'
 
-import NavigationBar from './components/NavigationBar'
+import NavigationBar from './containers/NavigationBar'
 import NotificationsSystem from 'reapop';
 import theme from 'reapop-theme-wybo';
 

@@ -1,5 +1,5 @@
 import * as actions from './types'
-import API from '../api'
+import API from '../api/apiController'
 import {notify} from 'reapop';
 
 export const getAllExpense = (id) => {

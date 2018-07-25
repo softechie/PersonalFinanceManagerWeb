@@ -14,9 +14,8 @@ const required = value => (value || typeof value === 'number' ? undefined : 'Req
 const LoginForm=(props)=>{
  
     return (
-    <Card>
-      <CardBody>
-<Col xs="12" sm={{ size: 12, offset: 4 }} md="4" className="m-align">
+    
+<Col xs="12" sm={{ size: 12, offset: 4 }} md="6" className="m-align">
 
             <h2 className="text-center">{props.title}</h2>
 <form  onSubmit={props.handleSubmit}>
@@ -40,18 +39,16 @@ const LoginForm=(props)=>{
                 </Field>
                 </FormGroup>
    <Row>
-    
-   <Col sm={{ size: 'auto', offset: 1 }} className="m-align">
-<Button color="primary"  type="submit">{props.submitName}</Button>
-</Col>
-<Col sm={{ size: 'auto', offset: 1 }}><Nav>
+    <Col sm={{ size: 'auto', offset: 1 }} className="m-align">  
+  <Button color="primary"  type="submit">{props.submitName}</Button>
+  </Col>  
+{/* <Col sm={{ size: 'auto', offset: 1 }}><Nav>
           <NavLink href="/">Forgot password?</NavLink>
-          </Nav> </Col>
+          </Nav> </Col> */}
         </Row>
     </form>
     </Col>
-      </CardBody>
-      </Card> 
+      
 );
 
 

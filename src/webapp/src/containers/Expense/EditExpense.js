@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import * as actions from '../../actions'
-import api from '../../api'
+import API from '../api/apiController'
 import { getFormatedDateForApi } from '../../helper'
 import ExpenseFieldsCard from '../../components/Expense/ExpenseFieldsCard'
 
@@ -15,7 +15,7 @@ class EditExpense extends React.Component {
     console.log(values)
     //converting into datatime format
     values.expense_date = getFormatedDateForApi(values.expense_date)
-    api.post('/expense/edit', values)
+    API.post('/expense/edit', values)
       .then(res => {
         console.log(res)
         if(res.status === 200)

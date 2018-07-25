@@ -8,7 +8,7 @@ import Investments from '../containers/Investments'
 import BankAccount from '../containers/BankAccount'
 import Login from '../containers/Login';
 import RegisterUser from '../containers/RegisterUser';
-
+import Settings from '../containers/Settings'
 const PageRoutes = () => {
   return (
     <Switch>
@@ -19,6 +19,7 @@ const PageRoutes = () => {
       <Route path="/investments" component={Investments}></Route>
       <Route path="/bankAccount" component={BankAccount}></Route>
       <Route path="/registerUser" component={RegisterUser}></Route>
+      <Route path="/settings" component={Settings}></Route>
     </Switch>
   )
 }
