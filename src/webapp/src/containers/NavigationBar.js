@@ -29,11 +29,14 @@ class NavigationBar extends React.Component {
     let isloggedIn = this.props.auth.loggedIn
     let navItems = isloggedIn ? <NavigationItems/> : ""
     let authBtn
+    
     if(isloggedIn) {
-      authBtn = <NavLink to="/">Logout <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i></NavLink>
+      authBtn = <NavLink to="/logout">Logout <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i></NavLink>
     } else {
       authBtn = <NavLink to="/login">Login <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i></NavLink>
     }
+
+    
     return (
       <Navbar color="menu" dark expand="lg">
         <NavbarBrand href="/" className="pfm">PFM</NavbarBrand>
@@ -41,7 +44,8 @@ class NavigationBar extends React.Component {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav navbar>
             {navItems}
-          </Nav>
+            </Nav>
+                 
           <Nav className="ml-auto" navbar>
             {authBtn}
           </Nav>

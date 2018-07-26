@@ -9,11 +9,13 @@ import BankAccount from '../containers/BankAccount'
 import Login from '../containers/Login';
 import RegisterUser from '../containers/RegisterUser';
 import Settings from '../containers/Settings'
+import Logout from '../containers/Logout'
 const PageRoutes = () => {
   return (
     <Switch>
       <Route path="/" exact component={Home}></Route>
       <Route path="/login" exact component={Login}></Route>
+      <Route path="/logout" exact component={Logout}></Route>
       <Route path="/income" component={Income}></Route>
       <Route path="/expense" component={Expense}></Route>
       <Route path="/investments" component={Investments}></Route>
