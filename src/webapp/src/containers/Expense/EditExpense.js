@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import * as actions from '../../actions'
-//import API from '../api/apiController'
+import API from '../api/apiController'
 import { getFormatedDateForApi } from '../../helper'
 import ExpenseFieldsCard from '../../components/Expense/ExpenseFieldsCard'
 
@@ -11,20 +11,20 @@ class EditExpense extends React.Component {
     this.props.getExpense(this.props.match.params.expense_id)
   }
 
-  // handleSubmit = (values) => {
-  //   console.log(values)
-  //   //converting into datatime format
-  //   values.expense_date = getFormatedDateForApi(values.expense_date)
-  //   API.post('/expense/edit', values)
-  //     .then(res => {
-  //       console.log(res)
-  //       if(res.status === 200)
-  //         this.props.history.push('/expense/all')
-  //     })
-  //     .catch(err => {
-  //       console.log(err)
-  //     })
-  // }
+  handleSubmit = (values) => {
+    console.log(values)
+    //converting into datatime format
+    values.expense_date = getFormatedDateForApi(values.expense_date)
+    API.post('/expense/edit', values)
+      .then(res => {
+        console.log(res)
+        if(res.status === 200)
+          this.props.history.push('/expense/all')
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
   render() {
     return (
       <Row>
