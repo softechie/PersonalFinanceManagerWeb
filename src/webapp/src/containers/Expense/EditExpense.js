@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import * as actions from '../../actions'
-import API from '../api/apiController'
 import { getFormatedDateForApi } from '../../helper'
 import ExpenseFieldsCard from '../../components/Expense/ExpenseFieldsCard'
 
@@ -15,15 +14,16 @@ class EditExpense extends React.Component {
     console.log(values)
     //converting into datatime format
     values.expense_date = getFormatedDateForApi(values.expense_date)
-    API.post('/expense/edit', values)
-      .then(res => {
-        console.log(res)
-        if(res.status === 200)
-          this.props.history.push('/expense/all')
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    this.props.editIncome(values)
+    // API.post('/expense/edit', values)
+    //   .then(res => {
+    //     console.log(res)
+    //     if(res.status === 200)
+    //       this.props.history.push('/expense/all')
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //   })
   }
   render() {
     return (
@@ -47,9 +47,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getExpense: (expenseId) => {
-    dispatch(actions.getExpense(expenseId))
-  }
+  getExpense: (expenseId) => dispatch(actions.getExpense(expenseId)),
+  editExpense: (expenseData) => dispatch(actions.editExpense(expenseData))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (EditExpense)

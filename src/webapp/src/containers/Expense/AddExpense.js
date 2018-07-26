@@ -1,24 +1,28 @@
 import React from 'react'
 import { Row, Col } from 'reactstrap'
-import API from '../api/apiController'
+import { connect } from 'react-redux'
+import * as actions from '../../actions'
 import { getFormatedDateForApi } from '../../helper'
 import ExpenseFieldsCard from '../../components/Expense/ExpenseFieldsCard'
 
 class AddExpense extends React.Component {
   handleSubmit = (values) => {
     console.log(values)
-    // converting into datatime format
+    //converting into datatime format
     values.expense_date = getFormatedDateForApi(values.expense_date)
-    API.put('/expense/new', values)
-      .then(res => {
-        console.log(res)
-        if(res.status === 201)
-          this.props.history.push('/expense/all')
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
+    this.props.addIncome(values)
+
+    
+  //   API.put('/expense/new', values)
+  //     .then(res => {
+  //       console.log(res)
+  //       if(res.status === 201)
+  //         this.props.history.push('/expense/all')
+  //     })
+  //     .catch(err => {
+  //       console.log(err)
+  //     })
+   }
 
   render() {
     return (
@@ -36,4 +40,8 @@ class AddExpense extends React.Component {
   }
 }
 
-export default AddExpense
+const mapDispatchToProps = dispatch => ({
+  addExpense: (expenseData) => dispatch(actions.addExpense(expenseData))
+})
+
+export default connect(null, mapDispatchToProps) (AddExpense)

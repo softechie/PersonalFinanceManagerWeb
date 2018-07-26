@@ -48,7 +48,7 @@ class API {
     })
   }
 
-  //POST
+  //PUT
   static put = (url, payload) => {
     return new Promise((resolve, reject) => {
       axios.put(url, payload)
@@ -73,7 +73,7 @@ class API {
     })
   }
 
-  //POST
+  //DELETE
   static delete = (url) => {
     return new Promise((resolve, reject) => {
       axios.delete(url)
