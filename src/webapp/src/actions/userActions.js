@@ -9,6 +9,8 @@ export const loginUser = (loginDetails) => {
       .then(res => {
         dispatch({type: actions.AUTH_LOGIN_FULFILLED, payload: res})
         history.push('/')
+        
+        
       })
       .catch(err => {
         
