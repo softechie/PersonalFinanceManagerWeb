@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import * as actions from '../../actions'
 import SearchBar from '../../components/SearchBar'
+import ValueBar from '../../components/ValueBar'
 import InvestmentsCard from '../../components/Investments/InvestmentsCard'
 import DeleteModal from '../../components/DeleteModal'
 
@@ -54,6 +55,10 @@ class SearchInvestments extends React.Component {
                        onSubmit={this.handleSubmit}>
             </SearchBar>
           </div>
+          <ValueBar title="Total Investments"
+                    color="success"
+                    value={this.props.investments.investmentsList.reduce((prev, cur) => { return prev + cur.investmentsAmount}, 0)}>
+          </ValueBar>
           <div className="block-content">
             {this.props.investments.investmentsList.map(investments => {
               return <InvestmentsCard key={investments.investmentsId}
