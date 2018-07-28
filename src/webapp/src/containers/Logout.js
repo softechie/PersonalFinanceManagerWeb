@@ -1,21 +1,21 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import * as actions from '../actions'
-import NavigationBar from './NavigationBar'
 
 class Logout extends Component {
-    componentWillMount() {
+  componentWillMount() {
     this.props.logout()
-    }
-   render(){
-   return (
-<div></div>
+  }
+  
+  render() {
+    return (
+      <div>Logging out...</div>
+    )
+  }
+}
 
-   )
-    }
-    }
 const mapDispatchToProps = dispatch => ({
-   logout: () => dispatch(actions.logout())
-  })
+  logout: () => dispatch(actions.logout())
+})
 
-  export default connect(null, mapDispatchToProps) (Logout)
+export default connect(null, mapDispatchToProps) (Logout)

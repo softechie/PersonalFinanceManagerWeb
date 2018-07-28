@@ -1,5 +1,7 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Switch } from 'react-router-dom'
+import store from '../store'
+import { PropsRoute, PublicRoute, PrivateRoute } from 'react-router-with-props'
 
 import Home from '../containers/Home'
 import Income from '../containers/Income'
@@ -10,18 +12,23 @@ import Login from '../containers/Login';
 import RegisterUser from '../containers/RegisterUser';
 import Settings from '../containers/Settings'
 import Logout from '../containers/Logout'
+
+const getLoggedInState = () => {
+  let state = store.getState()
+  return state.userReducer.loggedIn
+}
 const PageRoutes = () => {
   return (
     <Switch>
-      <Route path="/" exact component={Home}></Route>
-      <Route path="/login" exact component={Login}></Route>
-      <Route path="/logout" exact component={Logout}></Route>
-      <Route path="/income" component={Income}></Route>
-      <Route path="/expense" component={Expense}></Route>
-      <Route path="/investments" component={Investments}></Route>
-      <Route path="/bankAccount" component={BankAccount}></Route>
-      <Route path="/registerUser" component={RegisterUser}></Route>
-      <Route path="/settings" component={Settings}></Route>
+      <PropsRoute exact path="/" component={Home} />
+      <PublicRoute path="/login" authed={getLoggedInState()} redirectTo="/" component={Login} />
+      <PrivateRoute path="/logout" authed={getLoggedInState()} redirectTo="/login" component={Logout} />
+      <PrivateRoute path="/income" authed={getLoggedInState()} redirectTo="/login" component={Income} />
+      <PrivateRoute path="/expense" authed={getLoggedInState()} redirectTo="/login" component={Expense} />
+      <PrivateRoute path="/investments" authed={getLoggedInState()} redirectTo="/login" component={Investments} />
+      <PrivateRoute path="/bankAccount" authed={getLoggedInState()} redirectTo="/login" component={BankAccount} />
+      <PrivateRoute path="/registerUser" authed={getLoggedInState()} redirectTo="/login" component={RegisterUser} />
+      <PrivateRoute path="/settings" authed={getLoggedInState()} redirectTo="/login" component={Settings} />
     </Switch>
   )
 }

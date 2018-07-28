@@ -4,7 +4,7 @@ import { Card, CardBody, CardText } from 'reactstrap'
 
 const ValueBar = (props) => {
   return(
-    <Card>
+    <Card className="m-b-5">
       <CardBody>
         <CardText className="flex-sb-m">
           <span>{props.title}: <i className="fa fa-inr fs-13" aria-hidden="true"></i><span className={'text-'+props.color}><b>{props.value}</b></span></span>
