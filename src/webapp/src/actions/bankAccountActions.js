@@ -12,9 +12,10 @@ export const getAllBankAccount = () => {
 }
 
 export const searchBankAccount = (bankAccountKey) => {
+  bankAccountKey = bankAccountKey ? bankAccountKey : ''
   return (dispatch) => {
     dispatch({type: actions.SEARCH_BANKACCOUNT_PENDING})
-    API.get(`/bankAccount/search/${bankAccountKey}`)
+    API.get(`/bankAccount/search?bankAccountKey=${bankAccountKey}`)
       .then(res => dispatch({type: actions.SEARCH_BANKACCOUNT_FULFILLED, payload: res}))
       .catch(err => dispatch({type: actions.SEARCH_BANKACCOUNT_REJECTED, payload: err}))
   }

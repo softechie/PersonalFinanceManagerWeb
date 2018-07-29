@@ -21,9 +21,10 @@ export const getInvestments = (investmentsId) => {
 }
 
 export const searchInvestments = (investmentsKey) => {
+  investmentsKey = investmentsKey ? investmentsKey : ''
   return (dispatch) => {
     dispatch({type: actions.SEARCH_INVESTMENTS_PENDING})
-    API.get(`/investments/search/${investmentsKey}`)
+    API.get(`/investments/search?investmentsKey=${investmentsKey}`)
       .then(res => dispatch({type: actions.SEARCH_INVESTMENTS_FULFILLED, payload: res}))
       .catch(err => dispatch({type: actions.SEARCH_INVESTMENTS_REJECTED, payload: err}))
   }

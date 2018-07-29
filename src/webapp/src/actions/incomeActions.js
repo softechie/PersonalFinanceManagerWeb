@@ -24,7 +24,7 @@ export const searchIncome = (incomeKey) => {
   incomeKey = incomeKey ? incomeKey : ''
   return (dispatch) => {
     dispatch({type: actions.SEARCH_INCOME_PENDING})
-    API.get(`/income/search/${incomeKey}`)
+    API.get(`/income/search?incomeKey=${incomeKey}`)
       .then(res => dispatch({type: actions.SEARCH_INCOME_FULFILLED, payload: res}))
       .catch(err => dispatch({type: actions.SEARCH_INCOME_REJECTED, payload: err}))
   }
