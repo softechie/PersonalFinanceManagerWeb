@@ -44,7 +44,7 @@ class NavigationBar extends React.Component {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav navbar>
             {navItems}
-            </Nav>
+          </Nav>
                  
           <Nav className="ml-auto" navbar>
             {authBtn}

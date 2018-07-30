@@ -21,8 +21,8 @@ const NavigationItems = () => {
         <NavLink to="/bankAccount/all" className="nav-link" activeClassName="active">Bank Account</NavLink>
       </NavItem>
       <NavItem>
-              <NavLink to="/settings/all" className="nav-link" activeClassName="active">Settings</NavLink>
-            </NavItem>
+        <NavLink to="/settings/all" className="nav-link" activeClassName="active">Settings</NavLink>
+      </NavItem>
     </Fragment>
   )
 }
