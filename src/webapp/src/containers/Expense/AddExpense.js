@@ -10,18 +10,7 @@ class AddExpense extends React.Component {
     console.log(values)
     //converting into datatime format
     values.expense_date = getFormatedDateForApi(values.expense_date)
-    this.props.addIncome(values)
-
-    
-  //   API.put('/expense/new', values)
-  //     .then(res => {
-  //       console.log(res)
-  //       if(res.status === 201)
-  //         this.props.history.push('/expense/all')
-  //     })
-  //     .catch(err => {
-  //       console.log(err)
-  //     })
+    this.props.addExpense(values)
    }
 
   render() {

@@ -4,6 +4,7 @@ import { Row, Col } from 'reactstrap';
 import * as actions from '../../actions';
 import { getFormatedDate } from '../../helper'
 import SearchBar from '../../components/SearchBar';
+import ValueBar from '../../components/ValueBar'
 import ExpenseCard from '../../components/Expense/ExpenseCard';
 import DeleteModal from '../../components/DeleteModal';
 
@@ -57,6 +58,10 @@ class SearchExpense extends React.Component {
                        onChange={filterList}>
             </SearchBar>
           </div>
+          <ValueBar title="Total Income"
+                    color="success"
+                    value={expense.reduce((prev, cur) => { return prev + cur.expense_amount}, 0)}>
+          </ValueBar>
           <div className="block-content">
             {expense.map(expense => {
               return <ExpenseCard key={expense.expense_id}
@@ -86,14 +91,16 @@ const getFilterData = (state) =>{
         var eachExpenseName = item.expense_name.toLowerCase()
         var eachExpenseType = item.expense_type.toLowerCase()
         var eachExpenseAmount = item.expense_amount.toString()
-        var eachExpenseDate = getFormatedDate(item.expense_date)
-        var eachCreatedDate = getFormatedDate(item.created_date)
-        var eachUpdatedDate = getFormatedDate(item.updated_date)
+        var eachExpenseDate = (getFormatedDate(item.expense_date)).toLowerCase().toString()
+        var eachCreatedDate = (getFormatedDate(item.created_date)).toLowerCase().toString()
+        var eachUpdatedDate = getFormatedDate(item.updated_date).toLowerCase().toString()
+        
         var searchVal = values.toLowerCase()
         var filterVal = false
-        if((eachExpenseName.search(searchVal)!== -1) || (eachExpenseType.search(searchVal)!== -1) 
-          ||(eachExpenseAmount.search(searchVal)!==-1) || (eachExpenseDate.search(searchVal)!==-1)
-          ||(eachCreatedDate.search(searchVal)!==-1) || (eachUpdatedDate.search(searchVal)!==-1)){
+        if((eachExpenseName.search(searchVal)!== -1)||(eachUpdatedDate.search(searchVal)!==-1)
+        ||(eachExpenseType.search(searchVal)!== -1)||(eachCreatedDate.search(searchVal)!==-1) 
+        ||(eachExpenseDate.search(searchVal)!==-1)||(eachExpenseAmount.search(searchVal)!==-1))
+        {
             filterVal = true;
         }
         return filterVal;

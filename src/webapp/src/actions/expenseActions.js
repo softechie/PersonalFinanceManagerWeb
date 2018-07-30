@@ -27,7 +27,7 @@ export const getExpense = (editExpenseId) => {
 export const addExpense = (expenseData) => {
   return (dispatch) => {
     dispatch({type: actions.ADD_EXPENSE_PENDING})
-    API.post('/expense/new', expenseData)
+    API.put('/expense/new', expenseData)
       .then(res => {
         dispatch({type: actions.ADD_EXPENSE_FULFILLED, payload: res})
         history.push('/expense/all')
