@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
@@ -33,9 +33,11 @@ class NavigationBar extends React.Component {
     if(isloggedIn) {
       authBtn = <NavLink to="/logout">Logout <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i></NavLink>
     } else {
-      authBtn = <NavLink to="/login">Login <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i></NavLink>
+      authBtn = <Fragment>
+          <NavLink to="/login">Login <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i></NavLink>
+          <NavLink to="/signup" className="p-l-10">Sign Up <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i></NavLink>
+        </Fragment>
     }
-
     
     return (
       <Navbar color="menu" dark expand="lg">
@@ -45,7 +47,6 @@ class NavigationBar extends React.Component {
           <Nav navbar>
             {navItems}
           </Nav>
-                 
           <Nav className="ml-auto" navbar>
             {authBtn}
           </Nav>

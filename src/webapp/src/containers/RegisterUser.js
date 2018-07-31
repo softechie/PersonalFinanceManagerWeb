@@ -1,15 +1,11 @@
 import React, { Component } from "react";
-import {Button, FormGroup,Label,Row,Container,Col,CardText,CardBody } from "reactstrap";
-import { Route, Switch } from 'react-router-dom';
+import { Row, Col } from "reactstrap";
 import api from '../api/apiController'
 import RegisterUserForm from "../components/RegisterUserForm"
-class RegisterUser extends Component {
 
-  
+class RegisterUser extends Component {
   handleSubmit = (values) => {
-  
     console.log(values)
-   
     api.post('/register/new', values)
       .then(res => {
         console.log(res)
@@ -21,26 +17,19 @@ class RegisterUser extends Component {
       })
   }
 
-
-
- 
   render() {
     return (
-      <div className="" >
       <Row>
         <Col>
-          <div className="">
-            <RegisterUserForm title="Personal Finance Manager"
-                              submitName="Register"
-                              onSubmit={this.handleSubmit}>
-            </RegisterUserForm>
-          </div>
+          <RegisterUserForm title="Personal Finance Manager Sign Up"
+                            submitName="Register"
+                            onSubmit={this.handleSubmit}>
+          </RegisterUserForm>
         </Col>
       </Row>
-       
-       </div>
     );
   }
 }
-export default RegisterUser;
+
+export default RegisterUser
   

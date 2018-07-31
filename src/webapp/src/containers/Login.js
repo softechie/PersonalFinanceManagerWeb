@@ -13,7 +13,7 @@ class Login extends Component {
   render() {
     return (
       <div >
-        <LoginForm title="Personal Finance Manager"
+        <LoginForm title="Personal Finance Manager Login"
                    submitName="Login"
                    onSubmit={this.handleSubmit}>
         </LoginForm>

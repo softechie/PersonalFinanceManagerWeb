@@ -42,7 +42,7 @@ const LoginForm = (props) => {
               <Row>
                 <Col sm="12" className="m-align text-center">
                   <Button color="primary" type="submit">{props.submitName}</Button>
-                  <Link to="/registerUser" className="p-l-10">Sign Up?</Link>
+                  <Link to="/signup" className="p-l-10">Sign Up?</Link>
                 </Col>
               </Row>
             </form>
