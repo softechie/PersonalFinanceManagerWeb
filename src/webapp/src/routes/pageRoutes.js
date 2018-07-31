@@ -6,10 +6,11 @@ import { PropsRoute, PublicRoute, PrivateRoute } from 'react-router-with-props'
 import Home from '../containers/Home'
 import Income from '../containers/Income'
 import Expense from '../containers/Expense'
+import Budget from '../containers/Budget'
 import Investments from '../containers/Investments'
 import BankAccount from '../containers/BankAccount'
-import Login from '../containers/Login';
-import RegisterUser from '../containers/RegisterUser';
+import Login from '../containers/Login'
+import RegisterUser from '../containers/RegisterUser'
 import Settings from '../containers/Settings'
 import Logout from '../containers/Logout'
 
