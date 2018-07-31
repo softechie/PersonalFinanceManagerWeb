@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import InputText from './Inputs/InputText'
+import { Link } from 'react-router-dom'
 import { Row, Col, Card, CardBody, FormGroup, Button } from 'reactstrap'
 import { Field, reduxForm } from 'redux-form'
 
@@ -39,12 +40,10 @@ const LoginForm = (props) => {
                 </Field>
               </FormGroup>
               <Row>
-                <Col sm="12" className="m-align text-center">  
-                  <Button color="primary"  type="submit">{props.submitName}</Button>
+                <Col sm="12" className="m-align text-center">
+                  <Button color="primary" type="submit">{props.submitName}</Button>
+                  <Link to="/registerUser" className="p-l-10">Sign Up?</Link>
                 </Col>
-<Col sm={{ size: 'auto', offset: 1 }}><Nav>
-          <NavLink href="/registerUser" type="submit">RegisterUser?</NavLink>
-          </Nav> </Col>
               </Row>
             </form>
           </CardBody>
