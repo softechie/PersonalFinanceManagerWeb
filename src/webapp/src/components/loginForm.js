@@ -42,6 +42,9 @@ const LoginForm = (props) => {
                 <Col sm="12" className="m-align text-center">  
                   <Button color="primary"  type="submit">{props.submitName}</Button>
                 </Col>
+<Col sm={{ size: 'auto', offset: 1 }}><Nav>
+          <NavLink href="/registerUser" type="submit">RegisterUser?</NavLink>
+          </Nav> </Col>
               </Row>
             </form>
           </CardBody>
