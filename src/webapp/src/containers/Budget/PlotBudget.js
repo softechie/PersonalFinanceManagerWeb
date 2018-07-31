@@ -1,23 +1,23 @@
 import React from 'react'
-//import { render } from 'react-dom'
-//import Highcharts from 'highcharts/highstock'
-//import HighchartsReact from 'highcharts-react-official'
+import { render } from 'react-dom'
+import Highcharts from 'highcharts/highstock'
+import HighchartsReact from 'highcharts-react-official'
 import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import * as actions from '../../actions'
 //import SearchBar from '../../components/SearchBar'
 import ValueBar from '../../components/ValueBar'
-import api from '../../api'
+import api from '../../api/api'
 import { getFormatedDateForApi } from '../../helper'
 import BudgetFieldsCard from '../../components/Budget/BudgetFieldsCard'
 import BudgetCard from '../../components/Budget/BudgetCard'
 
 class PlotBudget extends React.Component {
 
-//  constructor () {
-//    super()
-//    this.state = { data: [] }
-//  }
+  constructor () {
+    super()
+    this.state = { data: [] }
+  }
 
   handleSubmit = (values) => {
     console.log(values)
@@ -30,7 +30,7 @@ class PlotBudget extends React.Component {
         if(res.status === 200)
           this.props.successToast('Successfully retrieved the budget')
           //this.props.history.push('/budget/all')
-		  //this.setState({ data: [[Date.UTC(2013,5,2),0.7695], [Date.UTC(2013,5,3),0.7648], [Date.UTC(2013,5,24),0.7623]] })
+		  this.setState({ data: [[Date.UTC(2013,5,2),0.7695], [Date.UTC(2013,5,3),0.7648], [Date.UTC(2013,5,24),0.7623]] })
       })
       .catch(err => {
         console.log(err)
@@ -41,7 +41,7 @@ class PlotBudget extends React.Component {
   render() {
 	const options = {  
 	  title: {text: 'My stock chart'  },
-	  series: [{ data: [[Date.UTC(2013,5,2),0.7695], [Date.UTC(2013,5,3),0.7648], [Date.UTC(2013,5,24),0.7623]] }] //this.state.data }]
+	  series: [{ data: this.state.data }] // [[Date.UTC(2013,5,2),0.7695], [Date.UTC(2013,5,3),0.7648], [Date.UTC(2013,5,24),0.7623]] }] //
 	};
 
     return (
