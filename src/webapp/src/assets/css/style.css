@@ -6,6 +6,16 @@
   background: linear-gradient(-135deg, #c850c0, #4158d0);
 }
 
+.logoutcss{
+  color: red !important;
+}
+
+.btn-secondary {
+  color: #fff;
+  background-color: transparent;
+  border-color: transparent;
+}
+
 .wrap {
   background: #fff;
   border-radius: 5px;

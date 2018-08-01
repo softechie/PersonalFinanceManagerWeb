@@ -9,6 +9,7 @@ import Expense from '../containers/Expense'
 import PlotBudget from '../containers/Budget/PlotBudget'
 import Investments from '../containers/Investments'
 import BankAccount from '../containers/BankAccount'
+import Profile from '../containers/Profile'
 import Login from '../containers/Login'
 import RegisterUser from '../containers/RegisterUser'
 import Settings from '../containers/Settings'
@@ -29,6 +30,7 @@ const PageRoutes = () => {
       <PrivateRoute path="/expense" authed={getLoggedInState()} redirectTo="/login" component={Expense} />
       <PrivateRoute path="/investments" authed={getLoggedInState()} redirectTo="/login" component={Investments} />
       <PrivateRoute path="/bankAccount" authed={getLoggedInState()} redirectTo="/login" component={BankAccount} />
+      <PrivateRoute path="/profile" authed={getLoggedInState()} redirectTo="/login" component={Profile} />
       <PrivateRoute path="/settings" authed={getLoggedInState()} redirectTo="/login" component={Settings} />
       <PrivateRoute path="/budgetPlot" authed={getLoggedInState()} redirectTo="/login" component={PlotBudget} />
     </Switch>
