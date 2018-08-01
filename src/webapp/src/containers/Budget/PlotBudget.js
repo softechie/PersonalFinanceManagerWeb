@@ -26,7 +26,7 @@ class PlotBudget extends React.Component {
     values.toExpenseDate = getFormatedDateForApi(values.toExpenseDate)
     api.post('/budget/plot', values)
       .then(res => {
-        console.log(res)
+        console.log(res.data)
         if(res.status === 200)
           this.props.successToast('Successfully retrieved the budget')
           //this.props.history.push('/budget/all')
@@ -55,7 +55,7 @@ class PlotBudget extends React.Component {
           </div>
           <ValueBar title="Total Income"
                     color="success"
-                    value={this.props.income.incomeList.reduce((prev, cur) => { return prev + cur.incomeAmount}, 0)}>
+                    value="4000">
           </ValueBar>
           <div className="block-content">
 		  <HighchartsReact
