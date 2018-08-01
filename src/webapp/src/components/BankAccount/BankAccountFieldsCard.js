@@ -20,7 +20,7 @@ const BankAccountFieldsCard = (props) => {
                        type="text"
                        name="accountHolderName"
                        title="Account Holder Name"
-                       placeholder="Eg: John Doe"
+                       placeholder="Eg: Nagarjuna M"
                        validate={required}
                        component={InputText}>
                 </Field>
