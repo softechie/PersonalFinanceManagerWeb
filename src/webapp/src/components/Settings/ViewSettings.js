@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Row, Col, Card, CardBody, CardTitle, FormGroup, Button } from 'reactstrap'
+import { Row, Col, Card, CardBody, CardTitle } from 'reactstrap'
 
 const ViewSettings = (props) => {
   return (
@@ -10,10 +10,10 @@ const ViewSettings = (props) => {
         <Row>
           <Col>
               <p>
-                <b> Currency : </b> {props.settingsData.currency}
+                <b> Email id : </b> {props.settingsData.emailId}
               </p>
               <p>
-                <b> Email id : </b> {props.settingsData.emailId}
+                <b> Currency : </b> {props.settingsData.currency ? props.settingsData.currency : 'No currency selected yet!'}
               </p>
           </Col>
         </Row>

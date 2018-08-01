@@ -8,6 +8,7 @@ import budgetReducer from './budgetReducer'
 import { reducer as ReduxFormReducer } from 'redux-form'
 import { reducer as notificationsReducer } from 'reapop';
 import userReducer from './userReducer'
+import settingsReducer from './settingsReducer'
 
 const defaultNotification = {
   position: 'bl',
@@ -25,5 +26,6 @@ export default combineReducers({
   budgetReducer,
   'form': ReduxFormReducer,
   notifications: notificationsReducer(defaultNotification),
-  userReducer
+  userReducer,
+  settingsReducer
 })
