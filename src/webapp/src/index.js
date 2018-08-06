@@ -6,6 +6,8 @@ import './assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css'
 import './assets/css/util.css'
 // import './assets/css/main.css'
 import './assets/css/style.css'
+import 'rc-steps/assets/index.css'
+import 'rc-steps/assets/iconfont.css'
 
 import { Provider } from 'react-redux'
 import store from './store'

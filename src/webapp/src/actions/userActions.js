@@ -17,7 +17,7 @@ export const loginUser = (loginDetails) => {
       })
       .catch(err => {
         dispatch({type: actions.AUTH_LOGIN_REJECTED, payload: err})
-      }) 
+      })
   }
 }
 
@@ -26,5 +26,32 @@ export const logout = () => {
     dispatch({type: actions.AUTH_LOGOUT})
     localStorage.removeItem('pfm_user');
     history.push('/login')
+  }
+}
+
+export const registerUser = (registerDetails) => {
+  return (dispatch) => {
+    dispatch({type: actions.REGISTER_USER_PENDING})
+    API.post('/register/new', registerDetails)
+      .then(res => {
+        dispatch({type: actions.REGISTER_USER_FULFILLED, payload: res})
+      })
+      .catch(err => {
+        dispatch({type: actions.REGISTER_USER_REJECTED, payload: err})
+      })
+  }
+}
+
+export const activateUser = (activationDetails) => {
+  return (dispatch) => {
+    dispatch({type: actions.ACTIVATE_USER_PENDING})
+    API.post('/activateUser', activationDetails)
+      .then(res => {
+        dispatch({type: actions.ACTIVATE_USER_FULFILLED, payload: res})
+        history.push('/login')
+      })
+      .catch(err => {
+        dispatch({type: actions.ACTIVATE_USER_REJECTED, payload: err})
+      })
   }
 }
