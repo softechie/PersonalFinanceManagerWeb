@@ -7,7 +7,7 @@ const initialState = {
   loggedIn: user ? true : false,
   stepDetails: {
     stepError: false,
-    currentStep: 1
+    currentStep: 0
   }
 }
 
