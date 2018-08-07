@@ -23,9 +23,9 @@ const NavigationItems = () => {
       <NavItem>
         <NavLink to="/budgetPlot" className="nav-link" activeClassName="active">Budget</NavLink>
       </NavItem>
-      <NavItem>
+      {/* <NavItem>
         <NavLink to="/settings/view" className="nav-link" activeClassName="active">Settings</NavLink>
-      </NavItem>
+      </NavItem> */}
     </Fragment>
   )
 }

@@ -23,6 +23,8 @@ export default function userReducer(state = initialState, action) {
       return state = {...state, stepDetails: { ...state.stepDetails, stepError: true } }
     case actions.ACTIVATE_USER_REJECTED:
       return state = {...state, stepDetails: { ...state.stepDetails, stepError: true } }
+    case actions.GET_PROFILE_FULFILLED:
+      return state = {...state, user: action.payload.data}
     default:
       return state
     }

@@ -55,3 +55,17 @@ export const activateUser = (activationDetails) => {
       })
   }
 }
+
+export const getProfile = (emailId) => {
+  return (dispatch) => {
+    dispatch({type: actions.GET_PROFILE_PENDING})
+    API.get(`/${emailId}/profile`)
+      .then(res => {
+        dispatch({type: actions.GET_PROFILE_FULFILLED, payload: res})
+        history.push('/')
+      })
+      .catch(err => {
+        dispatch({type: actions.GET_PROFILE_REJECTED, payload: err})
+      }) 
+  }
+}
