@@ -1,5 +1,4 @@
 import React from 'react'
-import { render } from 'react-dom'
 import Highcharts from 'highcharts/highstock'
 import HighchartsReact from 'highcharts-react-official'
 import { connect } from 'react-redux'
@@ -10,7 +9,6 @@ import ValueBar from '../../components/ValueBar'
 import api from '../../api/api'
 import { getFormatedDateForApi } from '../../helper'
 import BudgetFieldsCard from '../../components/Budget/BudgetFieldsCard'
-import BudgetCard from '../../components/Budget/BudgetCard'
 
 class PlotBudget extends React.Component {
 

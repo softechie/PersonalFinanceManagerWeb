@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import InputText from '../Inputs/InputText'
+import InputSelect from '../Inputs/InputSelect'
 import { Row, Col, FormGroup, Button } from 'reactstrap'
 import { Field, reduxForm } from 'redux-form'
 
@@ -65,6 +66,22 @@ const RegisterUserForm = (props) => {
                   component={InputText}>
           </Field>
         </FormGroup>
+        <FormGroup>
+          <Field id="currency"
+                  type="select"
+                  name="currency"
+                  title="Preferred currency"
+                  validate={required}
+                  component={InputSelect}>
+            <option value="USD">USD</option>
+            <option value="INR">INR</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="JPY">JPY</option>
+            <option value="RUB">RUB</option>
+            <option value="BTC">BTC</option>
+          </Field>
+        </FormGroup>
         <Row>
           <Col sm="12" className="m-align text-center">
             <Button color="primary" type="submit">{props.submitName}</Button>
@@ -83,4 +100,7 @@ RegisterUserForm.propTypes = {
 
 export default reduxForm({
   form: 'registerUserForm',
+  initialValues: {
+    currency: 'INR'
+  }
 })(RegisterUserForm)

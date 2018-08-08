@@ -1,8 +1,7 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import InputText from './Inputs/InputText'
-import { Row, Col, Card, CardBody, CardTitle, FormGroup, Button } from 'reactstrap'
+import { Row, Col, Card, CardBody, FormGroup, Button } from 'reactstrap'
 import { Field, reduxForm } from 'redux-form'
 
 const email = value =>
@@ -25,6 +24,7 @@ const ProfileForm = (props) => {
                        name="firstName"
                        title="First Name"
                        placeholder="Enter your First Name"
+                       disabled
                        validate={required}
                        component={InputText}>
                 </Field>
@@ -35,16 +35,18 @@ const ProfileForm = (props) => {
                        name="lastName"
                        title="Last Name"
                        placeholder="Enter your Last Name"
+                       disabled
                        validate={required}
                        component={InputText}>
                 </Field>
               </FormGroup>
               <FormGroup >
-                <Field id="contactNumber"
+                <Field id="mobileNumber"
                        type="number"
-                       name="contactNumber"
+                       name="mobileNumber"
                        title="Mobile Number"
                        placeholder="Enter your Mobile Number"
+                       disabled
                        validate={required}
                        component={InputText}>
                 </Field>
@@ -55,6 +57,7 @@ const ProfileForm = (props) => {
                        name="emailId"
                        title="Email"
                        placeholder="Enter your email"
+                       disabled
                        validate={[required,email]}
                        component={InputText}>
                 </Field>
@@ -65,13 +68,13 @@ const ProfileForm = (props) => {
                        name="companyName"
                        title="Company"
                        placeholder="Enter your Company name"
-                      //  validate={[required]}
+                       disabled
                        component={InputText}>
                 </Field>
               </FormGroup>
               <Row>
                 <Col sm="12" className="m-align text-center">
-                  <Button color="primary" type="submit">{props.submitName}</Button>
+                  <Button color="primary" type="submit" disabled>{props.submitName}</Button>
                 </Col>
               </Row>
             </form>
@@ -90,4 +93,5 @@ ProfileForm.propTypes = {
 
 export default reduxForm({
   form: 'profileForm',
+  enableReinitialize: true
 })(ProfileForm)

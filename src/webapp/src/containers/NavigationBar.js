@@ -15,31 +15,35 @@ import NavigationItems from '../components/NavBar/NavItems'
 class NavigationBar extends React.Component {
   constructor(props) {
     super(props)
-  
-    this.toggle = this.toggle.bind(this)
-    this.toggleDropDown = this.toggleDropDown.bind(this)
     this.state = {
       isOpen: false,
       dropdownOpen: false
     }
   }
 
-  componentWillMount(){
-    this.props.getProfile('kr')
+  componentWillMount() {
+    if(this.props.auth.loggedIn)
+      this.props.getProfile(this.props.currentUser.emailId)
   }
-  toggle() {
+
+  componentWillReceiveProps(nextProps) {
+    // this check makes sure that the getProfile action is not getting called for other prop changes
+    if((this.props.auth.loggedIn !== nextProps.auth.loggedIn) && this.props.currentUser.emailId) {
+      this.props.getProfile(this.props.currentUser.emailId)
+    }
+  }
+
+  toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
     })
   }
 
-  toggleDropDown() {
+  toggleDropDown = () => {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
-
     })
   }
-
 
   render() {
     let isloggedIn = this.props.auth.loggedIn
@@ -47,24 +51,23 @@ class NavigationBar extends React.Component {
     let authBtn
     
     if(isloggedIn) {
-      // authBtn = <NavLink to="/logout">Logout <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i></NavLink>
-    
-      authBtn = <NavItem style={{marginRight:34}}>
-     <Dropdown  isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
-        <DropdownToggle >
-        <Avatar skypeId="sitebase" size="50" onClick={this.togglePopup} round={true}/>
-        </DropdownToggle>
-        <DropdownMenu >
-          <DropdownItem header>{this.props.currentUser.firstName} <Link to="/settings/view" onClick={this.toggleDropDown}><i style={{position: 'absolute', right: 5, color: 'gray'}} className="fa fa-cog" aria-hidden="true" ></i></Link></DropdownItem>
-          <DropdownItem><Link className="emailcss" to="/profile">{this.props.currentUser.emailId}</Link></DropdownItem>
-          <DropdownItem divider />
-          <DropdownItem><Link className="logoutcss" to="/logout">Logout</Link></DropdownItem>
-        </DropdownMenu>
-      </Dropdown>
-      </NavItem>
-
+      authBtn = 
+        <NavItem style={{marginRight:34}}>
+          <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
+            <DropdownToggle className="btn-avatar">
+              <Avatar skypeId="sitebase" size="50" onClick={this.togglePopup} round={true}/>
+            </DropdownToggle>
+            <DropdownMenu >
+              <DropdownItem header>{this.props.currentUser.firstName} <Link to="/settings/view" onClick={this.toggleDropDown}><i className="fa fa-cog dropdown-cog" aria-hidden="true" title="settings"></i></Link></DropdownItem>
+              <DropdownItem><Link className="emailcss" to="/profile" title="profile">{this.props.currentUser.emailId}</Link></DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem><Link className="logoutcss" to="/logout">Logout</Link></DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </NavItem>
     } else {
-      authBtn = <Fragment>
+      authBtn = 
+        <Fragment>
           <NavLink to="/login">Login <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i></NavLink>
           <NavLink to="/signup" className="p-l-10">Sign Up <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i></NavLink>
         </Fragment>

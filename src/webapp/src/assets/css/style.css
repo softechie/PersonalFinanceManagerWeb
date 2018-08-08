@@ -14,12 +14,6 @@
   color: grey !important;
 }
 
-.btn-secondary {
-  color: #fff;
-  background-color: transparent;
-  border-color: transparent;
-}
-
 .wrap {
   background: #fff;
   border-radius: 5px;
@@ -146,4 +140,16 @@ a {
 .card{
   border: 0px;
   box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149)
+}
+
+.btn-avatar {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.dropdown-cog {
+  position: absolute;
+  right: 10px;
+  color: gray;
+  font-size: 1rem;
 }

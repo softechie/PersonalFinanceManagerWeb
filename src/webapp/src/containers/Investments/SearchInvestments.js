@@ -19,6 +19,7 @@ class SearchInvestments extends React.Component {
   componentWillMount() {
     //Dispatching get all action
     this.props.getInvestmentsList()
+    this.props.getSettings(this.props.currentUser.emailId)
   }
 
   toggle = () => {
@@ -57,13 +58,15 @@ class SearchInvestments extends React.Component {
           </div>
           <ValueBar title="Total Investments"
                     color="success"
-                    value={this.props.investments.investmentsList.reduce((prev, cur) => { return prev + cur.investmentsAmount}, 0)}>
+                    value={this.props.investments.investmentsList.reduce((prev, cur) => { return prev + cur.investmentsAmount}, 0)}
+                    currency={this.props.settingsData ? this.props.settingsData.currency : ""}>
           </ValueBar>
           <div className="block-content">
             {this.props.investments.investmentsList.map(investments => {
               return <InvestmentsCard key={investments.investmentsId}
                                       investments={investments}
                                       match={this.props.match}
+                                      currency={this.props.settingsData ? this.props.settingsData.currency : ""}
                                       getInvestmentsId={this.handleGetInvestmentsId}>
                       </InvestmentsCard>
             })}
@@ -81,13 +84,16 @@ class SearchInvestments extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  investments: state.investmentsReducer
+  investments: state.investmentsReducer,
+  settingsData: state.settingsReducer.currentSettings,
+  currentUser: state.userReducer.user
 })
 
 const mapDispatchToProps = dispatch => ({
   getInvestmentsList: () => dispatch(actions.getAllInvestments()),
   searchInvestments: (investmentsKey) => dispatch(actions.searchInvestments(investmentsKey)),
-  deleteInvestments: (investmentsId) => dispatch(actions.deleteInvestments(investmentsId))
+  deleteInvestments: (investmentsId) => dispatch(actions.deleteInvestments(investmentsId)),
+  getSettings: (emailId) => dispatch(actions.getSettings(emailId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (SearchInvestments)

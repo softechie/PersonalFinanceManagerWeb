@@ -1,13 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Row, Col, Card, CardBody, CardTitle, FormGroup, Button } from 'reactstrap'
-import InputText from '../Inputs/InputText'
 import InputSelect from '../Inputs/InputSelect'
 import InputDate from '../Inputs/InputDate'
 import { Field, reduxForm } from 'redux-form'
 
 const required = value => (value || typeof value === 'number' ? undefined : 'Required')
-const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined
 const BudgetFieldsCard = (props) => {
   return (
     <Card>

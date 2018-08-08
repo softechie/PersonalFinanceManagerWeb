@@ -11,8 +11,13 @@ const getFormatedDateForApi = (date) =>{
  
 const history = createBrowserHistory();
 
+const getCurrencyIconFont = (currency) => {
+  return (currency && currency !== "") ? `fa fa-${currency.toLowerCase()} fs-13` : 'fa fa-inr fs-13'
+} 
+
 export {
   getFormatedDate,
   getFormatedDateForApi,
-  history
+  history,
+  getCurrencyIconFont
 }

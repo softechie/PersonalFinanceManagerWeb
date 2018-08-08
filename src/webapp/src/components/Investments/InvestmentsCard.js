@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Card, CardBody, CardText, UncontrolledTooltip  } from 'reactstrap'
-import { getFormatedDate } from '../../helper'
+import { getFormatedDate, getCurrencyIconFont } from '../../helper'
 
 const InvestmentsCard = (props) => {
   const handleDelete = () => {
@@ -14,7 +14,7 @@ const InvestmentsCard = (props) => {
         <CardText className="flex-sb-m">
           <span>
             <i className="fa fa-bookmark-o text-primary" aria-hidden="true"></i> {props.investments.investmentsType}
-            <i className="fa fa-money m-l-30 text-success" aria-hidden="true"></i> <i className="fa fa-inr fs-13" aria-hidden="true"></i>{props.investments.investmentsAmount}
+            <i className="fa fa-money m-l-30 text-success" aria-hidden="true"></i> <i className={getCurrencyIconFont(props.currency)} aria-hidden="true"></i>{props.investments.investmentsAmount}
             <i className="fa fa-calendar m-l-30 text-info" aria-hidden="true"></i> {getFormatedDate(props.investments.investmentsDate)}
           </span>
           <span>

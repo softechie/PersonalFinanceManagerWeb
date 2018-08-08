@@ -62,7 +62,6 @@ export const getProfile = (emailId) => {
     API.get(`/${emailId}/profile`)
       .then(res => {
         dispatch({type: actions.GET_PROFILE_FULFILLED, payload: res})
-        history.push('/')
       })
       .catch(err => {
         dispatch({type: actions.GET_PROFILE_REJECTED, payload: err})

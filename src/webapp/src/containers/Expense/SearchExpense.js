@@ -20,6 +20,7 @@ class SearchExpense extends React.Component {
   componentWillMount() {
     //Dispatching get all action
     this.props.getExpenseList();
+    this.props.getSettings(this.props.currentUser.emailId)
   }
 
   render() {
@@ -60,13 +61,15 @@ class SearchExpense extends React.Component {
           </div>
           <ValueBar title="Total Income"
                     color="success"
-                    value={expense.reduce((prev, cur) => { return prev + cur.expense_amount}, 0)}>
+                    value={expense.reduce((prev, cur) => { return prev + cur.expense_amount}, 0)}
+                    currency={this.props.settingsData ? this.props.settingsData.currency : ""}>
           </ValueBar>
           <div className="block-content">
             {expense.map(expense => {
               return <ExpenseCard key={expense.expense_id}
                                  expense={expense}
                                  match={match}
+                                 currency={this.props.settingsData ? this.props.settingsData.currency : ""}
                                  getExpenseId={handleGetExpenseId}>
                       </ExpenseCard>
             })}
@@ -110,17 +113,18 @@ const getFilterData = (state) =>{
 }
 
 
-function mapStateToProps(state){
-    return {
-        expense: getFilterData(state),
-        status : state.expenseReducer.status
-    };
-}
+const mapStateToProps = state => ({
+  expense: getFilterData(state),
+  status: state.expenseReducer.status,
+  settingsData: state.settingsReducer.currentSettings,
+  currentUser: state.userReducer.user
+})
 
 const mapDispatchToProps = (dispatch, state) => ({
   getExpenseList: () => dispatch(actions.getAllExpense()),
   searchExpense: (filterVal) => dispatch(actions.searchExpense(filterVal)),
-  deleteExpense : (expenseDeleteData) => dispatch(actions.deleteExpense(expenseDeleteData))
+  deleteExpense : (expenseDeleteData) => dispatch(actions.deleteExpense(expenseDeleteData)),
+  getSettings: (emailId) => dispatch(actions.getSettings(emailId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (SearchExpense)

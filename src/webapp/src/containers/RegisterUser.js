@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Row, Col, Card, CardBody } from 'reactstrap'
 import Steps, { Step } from 'rc-steps'
@@ -6,8 +6,18 @@ import * as actions from '../actions'
 import RegisterUserForm from '../components/Register/RegisterUserForm'
 import ActivateUserForm from '../components/Register/ActivateUserForm'
 
-class RegisterUser extends Component {
+class RegisterUser extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      regValues: {}
+    }
+  }
   handleRegisterSubmit = (values) => {
+    this.setState({
+      regValues: { emailId: values.emailId }
+    })
     this.props.registerUser(values)
   }
 
@@ -25,6 +35,7 @@ class RegisterUser extends Component {
     } else {
       stepData = 
         <ActivateUserForm submitName="Activate"
+                          initialValues={this.state.regValues}
                           onSubmit={this.handleActivationSubmit}>
         </ActivateUserForm>
     }

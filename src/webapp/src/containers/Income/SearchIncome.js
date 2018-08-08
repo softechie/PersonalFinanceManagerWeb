@@ -19,6 +19,7 @@ class SearchIncome extends React.Component {
   componentWillMount() {
     //Dispatching get all action
     this.props.getIncomeList()
+    this.props.getSettings(this.props.currentUser.emailId)
   }
 
   toggle = () => {
@@ -57,13 +58,15 @@ class SearchIncome extends React.Component {
           </div>
           <ValueBar title="Total Income"
                     color="success"
-                    value={this.props.income.incomeList.reduce((prev, cur) => { return prev + cur.incomeAmount}, 0)}>
+                    value={this.props.income.incomeList.reduce((prev, cur) => { return prev + cur.incomeAmount}, 0)}
+                    currency={this.props.settingsData ? this.props.settingsData.currency : ""}>
           </ValueBar>
           <div className="block-content">
             {this.props.income.incomeList.map(income => {
               return <IncomeCard key={income.incomeId}
                                  income={income}
                                  match={this.props.match}
+                                 currency={this.props.settingsData ? this.props.settingsData.currency : ""}
                                  getIncomeId={this.handleGetIncomeId}>
                       </IncomeCard>
             })}
@@ -81,13 +84,16 @@ class SearchIncome extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  income: state.incomeReducer
+  income: state.incomeReducer,
+  settingsData: state.settingsReducer.currentSettings,
+  currentUser: state.userReducer.user
 })
 
 const mapDispatchToProps = dispatch => ({
   getIncomeList: () => dispatch(actions.getAllIncome()),
   searchIncome: (incomeKey) => dispatch(actions.searchIncome(incomeKey)),
-  deleteIncome: (incomeId) => dispatch(actions.deleteIncome(incomeId))
+  deleteIncome: (incomeId) => dispatch(actions.deleteIncome(incomeId)),
+  getSettings: (emailId) => dispatch(actions.getSettings(emailId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (SearchIncome)

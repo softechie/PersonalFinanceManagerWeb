@@ -21,12 +21,12 @@ const UpdateCurrency = (props) => {
                        validate={required}
                        component={InputSelect}>
                   <option value="USD">USD</option>
-                  <option value="AUD">AUD</option>
                   <option value="INR">INR</option>
                   <option value="EUR">EUR</option>
                   <option value="GBP">GBP</option>
                   <option value="JPY">JPY</option>
-                  <option value="CAD">CAD</option>
+                  <option value="RUB">RUB</option>
+                  <option value="BTC">BTC</option>
                 </Field>
               </FormGroup>
             </Col>

@@ -11,6 +11,16 @@ const ActivateUserForm = (props) => {
     <Fragment>
       <form onSubmit={props.handleSubmit}>
         <FormGroup >
+          <Field id="emailId"
+                  type="email"
+                  name="emailId"
+                  title="Email Address"
+                  validate={required}
+                  disabled
+                  component={InputText}>
+          </Field>
+        </FormGroup>
+        <FormGroup >
           <Field id="otp"
                   type="number"
                   name="otp"
@@ -37,4 +47,5 @@ ActivateUserForm.propTypes = {
 
 export default reduxForm({
   form: 'activateUserForm',
+  enableReinitialize: true
 })(ActivateUserForm)
