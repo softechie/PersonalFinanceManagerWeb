@@ -4,7 +4,6 @@ import HighchartsReact from 'highcharts-react-official'
 import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import * as actions from '../../actions'
-import api from '../../api/api'
 import { getFormatedDateForApi } from '../../helper'
 import BudgetFieldsCard from '../../components/Budget/BudgetFieldsCard'
 import _ from 'lodash';

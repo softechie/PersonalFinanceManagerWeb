@@ -48,23 +48,21 @@ class NavigationBar extends React.Component {
   render() {
     let isloggedIn = this.props.auth.loggedIn
     let navItems = isloggedIn ? <NavigationItems/> : ""
-    let authBtn
+    let authBtn, avtrBtn
     
     if(isloggedIn) {
-      authBtn = 
-        <NavItem style={{marginRight:34}}>
-          <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
-            <DropdownToggle className="btn-avatar">
-              <Avatar skypeId="sitebase" size="50" onClick={this.togglePopup} round={true}/>
-            </DropdownToggle>
-            <DropdownMenu >
-              <DropdownItem header>{this.props.currentUser.firstName} <Link to="/settings/view" onClick={this.toggleDropDown}><i className="fa fa-cog dropdown-cog" aria-hidden="true" title="settings"></i></Link></DropdownItem>
-              <DropdownItem><Link className="emailcss" to="/profile" title="profile">{this.props.currentUser.emailId}</Link></DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem><Link className="logoutcss" to="/logout">Logout</Link></DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        </NavItem>
+      avtrBtn = 
+        <Dropdown className="pfm-account-drpdwn" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
+          <DropdownToggle className="btn-avatar">
+            <Avatar skypeId="sitebase" size="50" onClick={this.togglePopup} round={true}/>
+          </DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem header>{this.props.currentUser.firstName} <Link to="/settings/view" onClick={this.toggleDropDown}><i className="fa fa-cog dropdown-cog" aria-hidden="true" title="settings"></i></Link></DropdownItem>
+            <DropdownItem><Link className="emailcss" to="/profile" title="profile">{this.props.currentUser.emailId}</Link></DropdownItem>
+            <DropdownItem divider />
+            <DropdownItem><Link className="logoutcss" to="/logout">Logout</Link></DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
     } else {
       authBtn = 
         <Fragment>
@@ -74,18 +72,21 @@ class NavigationBar extends React.Component {
     }
     
     return (
-      <Navbar color="menu" dark expand="lg">
-        <NavbarBrand href="/" className="pfm">PFM</NavbarBrand>
-        <NavbarToggler onClick={this.toggle} />
-        <Collapse isOpen={this.state.isOpen} navbar>
-          <Nav navbar>
-            {navItems}
-          </Nav>
-          <Nav className="ml-auto" navbar>
-            {authBtn}
-          </Nav>
-        </Collapse>
-      </Navbar>
+      <Fragment>
+        <Navbar color="menu" dark expand="lg">
+          <NavbarBrand href="/" className="pfm">PFM</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav navbar>
+              {navItems}
+            </Nav>
+            <Nav className="ml-auto" navbar>
+              {authBtn}
+            </Nav>
+          </Collapse>
+        </Navbar>
+        {avtrBtn}
+      </Fragment>
     )
   }
 }

@@ -18,7 +18,7 @@ const ValueBar = (props) => {
 ValueBar.propTypes = {
   title: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
   currency: PropTypes.string.isRequired
 }
 
