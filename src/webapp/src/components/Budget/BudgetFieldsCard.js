@@ -69,6 +69,6 @@ export default reduxForm({
   form: 'budgetForm',
   enableReinitialize: true,
   initialValues: {
-    budgetType: 'salary'
+    budgetType: 'Plot'
   }
 })(BudgetFieldsCard)

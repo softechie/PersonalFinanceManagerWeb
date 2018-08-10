@@ -67,55 +67,21 @@ class PlotBudget extends React.Component {
 
   render() {
 	 
-		const options = {  
-				  rangeSelector: {
-			            allButtonsEnabled: true,
-			            buttons: [{
-			                type: 'month',
-			                count: 3,
-			                text: 'Day',
-			                dataGrouping: {
-			                    forced: true,
-			                    units: [['day', [1]]]
-			                }
-			            }, {
-			                type: 'year',
-			                count: 1,
-			                text: 'Week',
-			                dataGrouping: {
-			                    forced: true,
-			                    units: [['week', [1]]]
-			                }
-			            }, {
-			                type: 'all',
-			                text: 'Month',
-			                dataGrouping: {
-			                    forced: true,
-			                    units: [['month', [1]]]
-			                }
-			            }],
-			            buttonTheme: {
-			                width: 60
-			            },
-			            selected: 2
-			        },			
+	  const options = {  	
 	  chart: { type: 'column' },
-	  title: {text: this.state.title + " chart" },
+	  title: {text: this.state.title + " Graph" },
 	  xAxis: { 
 	          title: { text: 'datetime'},
 			  type: 'datetime',
-			  dateTimeLabelFormats: {
-			    day: "%e-%b",
-			    month: "%b '%y",
-			    year: "%Y"
-			  }
+			  format: '{value:%Y-%b-%e}'
 	  },
 	  yAxis: { 
 	        title: { text: 'Amount'}
 	  },
 	 series: [ { 
 		 showInLegend: false,
-		 data: this.state.plotdata 
+		 //data: this.state.plotdata
+		 data: this.props.budgetList
 		 } ]
 	};
 
@@ -133,10 +99,15 @@ class PlotBudget extends React.Component {
 
           <div>
           <h6>Budget List - Summary </h6>
-          <ul className="list-group">
-             {this.renderObjects()}   
-          </ul>
+          <table border="1">
+            <tr>
+              <th>Type</th>
+              <th>Creation Date</th>
+              <th>Amount</th>
+            </tr>
+            {this.renderObjects()}
 
+		    </table>
         </div>
 
           <div className="block-content">
@@ -187,17 +158,26 @@ class PlotBudget extends React.Component {
 	   return _.map(this.props.budgetList, object => {
    		   //console.log(object);
 		   if (object.expense_id != null) 
-			   return ( <li className="list-group-item" key={object.expense_id}>
-		           		Expense | {object.created_date } |{object.expense_amount}
-		           		</li> );
+			   return (
+				      <tr>
+				          <td>Expense</td>
+				          <td>{object.created_date } </td>
+				          <td>{object.expense_amount}</td>
+			          </tr> );
 		   else if (object.investmentsId != null) 
-			   return ( <li className="list-group-item" key={object.investmentsId}>
-		           		Investment |{object.createdDate } |{object.investmentsAmount}
-		           		</li> );
+			   return (
+				      <tr>
+				          <td>Investment</td>
+				          <td>{object.createdDate } </td>
+				          <td>{object.investmentsAmount}</td>
+			          </tr> );
 		   else if (object.incomeId != null) 
-			   return ( <li className="list-group-item" key={object.incomeId}>
-		           		Income | {object.createdDate } |{object.incomeAmount}
-		           		</li> );
+			   return ( 
+					      <tr>
+				          <td>Income</td>
+				          <td>{object.createdDate } </td>
+				          <td>{object.incomeAmount}</td>
+			          </tr> );
 	   });
   }
 }
