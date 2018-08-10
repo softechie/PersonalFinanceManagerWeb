@@ -21,7 +21,7 @@ class PlotBudget extends React.Component {
 			    	title: ""
     			 }
     this.renderObjects = this.renderObjects.bind(this);
-    this.processObjects = this.processObjects.bind(this);
+    //this.processObjects = this.processObjects.bind(this);
   }
 
   componentWillMount() {
@@ -38,7 +38,7 @@ class PlotBudget extends React.Component {
     console.log("API Success")
     console.log(this.props.budgetList) 
     
-    this.processObjects(); 	
+    //this.processObjects(); 	
 	this.setState({ plotdata: this.state.expensedata });
     //this.setState({ plotdata: [[Date.UTC(2018,7,2),1500], [Date.UTC(2018,7,15),2200], [Date.UTC(2018,7,31),600], [Date.UTC(2018,7,31),800]] })
 	
@@ -72,7 +72,7 @@ class PlotBudget extends React.Component {
 	  xAxis: { 
 	          title: { text: 'Date'},
 			  type: 'datetime',
-			  format: '{value:%Y-%b-%e}'
+			  format: '{value:%e-%b-%Y}'
 	  },
 	  yAxis: { 
 	        title: { text: 'Amount'}
@@ -95,19 +95,16 @@ class PlotBudget extends React.Component {
             </BudgetFieldsCard>
           </div>
 
-
           <div>
-          <h6>Budget List - Summary </h6>
-          <table border="1">
-            <tr>
-              <th>Type</th>
-              <th>Creation Date</th>
-              <th>Amount</th>
-            </tr>
-            {this.renderObjects()}
-
-		    </table>
-        </div>
+          	<h6> Plot List - Summary </h6>
+          	<table border="1" width="20%">
+          		<tr>
+          			<th>Creation Date</th>
+          			<th>Amount</th>
+          			</tr>
+          			{this.renderObjects()}
+          	</table>
+		  </div>
 
           <div className="block-content">
 		  <HighchartsReact
@@ -122,61 +119,48 @@ class PlotBudget extends React.Component {
     )
   }
 
-  processObjects() {
-	  
-       _.map(this.props.budgetList, object => {
-		 var exp = [object.created_date, object.expense_amount];
-		 var income = [object.createdDate, object.incomeAmount];
-		 var invest = [object.createdDate, object.investmentsAmount];
-		 
-	   if (object.expense_id != null)
-		   {  
-		   	this.setState({ expensedata:[...this.state.expensedata], exp });
-		   }
-		   
-	   if (object.incomeId != null) 
-		   {
-		   this.setState({ incomedata:[...this.state.incomedata], income });
-		   }
-	   
-	   if (object.investmentsId != null) 
-		   {
-		   this.setState({ investmentdata:[...this.state.investmentdata], invest});		   
-		   }
-  });
-       console.log("Processed Objects - expense");
-       console.log(this.state.expensedata);
- 	  // console.log(this.state.incomedata);
- 	  //console.log(this.state.investmentdata);
+// processObjects() 
+// {
+//	  
+//       _.map(this.props.budgetList, object => {
+//		 var exp = [object.created_date, object.expense_amount];
+//		 var income = [object.createdDate, object.incomeAmount];
+//		 var invest = [object.createdDate, object.investmentsAmount];
+//		 
+//	   if (object.expense_id != null)
+//		   {  
+//		   	this.setState({ expensedata:[...this.state.expensedata], exp });
+//		   }
+//		   
+//	   if (object.incomeId != null) 
+//		   {
+//		   this.setState({ incomedata:[...this.state.incomedata], income });
+//		   }
+//	   
+//	   if (object.investmentsId != null) 
+//		   {
+//		   this.setState({ investmentdata:[...this.state.investmentdata], invest});		   
+//		   }
+  //});
+  //console.log("Processed Objects - expense");
+  //console.log(this.state.expensedata);
+  // console.log(this.state.incomedata);
+  //console.log(this.state.investmentdata);
 
-}
+// }
   
   renderObjects() {
 	  console.log("Render Objects");
 	  console.log(this.props.budgetList);
 	   return _.map(this.props.budgetList, object => {
-   		   //console.log(object);
-		   if (object.expense_id != null) 
-			   return (
-				      <tr>
-				          <td>Expense</td>
-				          <td>{object.created_date } </td>
-				          <td>{object.expense_amount}</td>
-			          </tr> );
-		   else if (object.investmentsId != null) 
-			   return (
-				      <tr>
-				          <td>Investment</td>
-				          <td>{object.createdDate } </td>
-				          <td>{object.investmentsAmount}</td>
-			          </tr> );
-		   else if (object.incomeId != null) 
-			   return ( 
-					      <tr>
-				          <td>Income</td>
-				          <td>{object.createdDate } </td>
-				          <td>{object.incomeAmount}</td>
-			          </tr> );
+		   
+		   var d = new Date(object[0]);
+		   var date = d.toLocaleDateString();
+		   var amt = object[1];
+		   	return ( <tr>
+		   				<td>{date} </td>
+				        <td>{amt}</td>
+			         </tr> );
 	   });
   }
 }
