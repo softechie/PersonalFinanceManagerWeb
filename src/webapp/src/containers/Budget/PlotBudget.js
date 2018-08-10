@@ -70,7 +70,7 @@ class PlotBudget extends React.Component {
 	  chart: { type: 'column' },
 	  title: {text: this.state.title + " Graph" },
 	  xAxis: { 
-	          title: { text: 'datetime'},
+	          title: { text: 'Date'},
 			  type: 'datetime',
 			  format: '{value:%Y-%b-%e}'
 	  },
