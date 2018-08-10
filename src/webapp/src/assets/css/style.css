@@ -59,6 +59,9 @@
   padding : 0px 50px;
   line-height: 2em;
   font-weight: 400;
+}
+
+.bg-menu-sm {
   width: calc(100% - 86px);
 }
 

@@ -73,7 +73,7 @@ class NavigationBar extends React.Component {
     
     return (
       <Fragment>
-        <Navbar color="menu" dark expand="lg">
+        <Navbar color="menu" dark expand="lg" className={isloggedIn ? "bg-menu-sm": ""}>
           <NavbarBrand href="/" className="pfm">PFM</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
