@@ -16,6 +16,7 @@ const BudgetCard = (props) => {
             <i className="fa fa-calendar m-l-30 text-info" aria-hidden="true"></i> {getFormatedDate(props.budget.fromExpenseDate)}
             <i className="fa fa-calendar m-l-30 text-info" aria-hidden="true"></i> {getFormatedDate(props.budget.toExpenseDate)}
             <i className="fa fa-bookmark-o text-primary" aria-hidden="true"></i> {props.budget.budgetType}
+            <i className="fa fa-bookmark-o text-primary" aria-hidden="true"></i> {props.budget.plotType}
           </span>
           <span>
             <Link to={`/budget/edit/${props.budget.budgetId}`}>

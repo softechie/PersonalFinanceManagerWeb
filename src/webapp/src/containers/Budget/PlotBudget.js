@@ -18,7 +18,8 @@ class PlotBudget extends React.Component {
     				incomedata: [],
     				investmentdata: [],
     				plotdata: [],
-			    	title: ""
+			    	title: "",
+			    	charttype: ""
     			 }
     this.renderObjects = this.renderObjects.bind(this);
     //this.processObjects = this.processObjects.bind(this);
@@ -43,6 +44,7 @@ class PlotBudget extends React.Component {
     //this.setState({ plotdata: [[Date.UTC(2018,7,2),1500], [Date.UTC(2018,7,15),2200], [Date.UTC(2018,7,31),600], [Date.UTC(2018,7,31),800]] })
 	
     this.setState({ title: values.budgetType })
+    this.setState({ charttype: values.plotType })
     //this.setState({ rawdata: res.data })
     
 //    api.post('/budget/plot', values)
@@ -66,22 +68,107 @@ class PlotBudget extends React.Component {
 
   render() {
 	 
-	  const options = {  	
-	  chart: { type: 'column' },
-	  title: {text: this.state.title + " Graph" },
-	  xAxis: { 
-	          title: { text: 'Date'},
-			  type: 'datetime',
-			  format: '{value:%e-%b-%Y}'
+	  const options = {
+	  colors: ['#7cb5ec', '#f7a35c', '#90ee7e', '#7798BF', '#aaeeee', '#ff0066',
+	        '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
+	  chart: 
+	  { 
+		  type: this.state.charttype,
+		  //type: 'bar' ,
+	      backgroundColor: {
+	            linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+	            stops: [
+	                [0, '#2a2a2b'],
+	                [1, '#3e3e40']
+	            ]
+	        },
+	      plotBorderColor: '#606063'
 	  },
-	  yAxis: { 
-	        title: { text: 'Amount'}
+	  title: 
+	  {
+		  text: this.state.title + " Graph",
+		  style: 
+		  {
+	            color: '#E0E0E3'
+		  }
 	  },
-	 series: [ { 
-		 showInLegend: false,
-		 //data: this.state.plotdata
-		 data: this.props.budgetList
-		 } ]
+	  xAxis: {
+	        gridLineColor: '#707073',
+	        labels: {
+	            style: {
+	                color: '#E0E0E3'
+	            }
+	        },
+	        lineColor: '#707073',
+	        minorGridLineColor: '#505053',
+	        tickColor: '#707073',
+	        title: 
+	        {
+	        	text: 'Date',
+	            style: 
+	            {
+	                color: '#A0A0A3'
+	            }
+
+	        },	          
+			type: 'datetime',
+			format: '{value:%e-%b-%Y}'
+	  },
+	  yAxis: 
+	  {
+	        gridLineColor: '#707073',
+	        labels: {
+	            style: {
+	                color: '#E0E0E3'
+	            }
+	        },
+	        lineColor: '#707073',
+	        minorGridLineColor: '#505053',
+	        tickColor: '#707073',
+	        tickWidth: 1, 
+	        title: {
+	        	text: 'Amount',
+	        	style: {
+	                color: '#A0A0A3'
+	            }
+	        }
+	  },
+    tooltip: {
+        backgroundColor: 'rgba(0, 0, 0, 0.85)',
+        style: {
+            color: '#F0F0F0'
+        },
+        shared: true
+    },
+    legend: {
+        itemStyle: {
+            color: '#E0E0E3'
+        },
+        itemHoverStyle: {
+            color: '#FFF'
+        },
+        itemHiddenStyle: {
+            color: '#606063'
+        }
+    },
+    plotOptions: {
+        series: {
+            dataLabels: {
+                color: '#B0B0B3'
+            },
+            marker: {
+                lineColor: '#333'
+            }
+        },
+    },
+	 series: this.props.budgetList,
+    // special colors for some of the parameters
+    legendBackgroundColor: 'rgba(0, 0, 0, 0.5)',
+    background2: '#505053',
+    dataLabelsColor: '#B0B0B3',
+    textColor: '#C0C0C0',
+    contrastTextColor: '#F0F0F3',
+    maskColor: 'rgba(255,255,255,0.3)'
 	};
 
 	    
@@ -95,17 +182,6 @@ class PlotBudget extends React.Component {
             </BudgetFieldsCard>
           </div>
 
-          <div>
-          	<h6> Plot List - Summary </h6>
-          	<table border="1" width="20%">
-          		<tr>
-          			<th>Creation Date</th>
-          			<th>Amount</th>
-          			</tr>
-          			{this.renderObjects()}
-          	</table>
-		  </div>
-
           <div className="block-content">
 		  <HighchartsReact
 			highcharts={Highcharts}
@@ -113,6 +189,18 @@ class PlotBudget extends React.Component {
 			options={options}
 		  />
           </div>
+
+          <div>
+        	<h6> Plot List - Summary </h6>
+        	{this.state.charttype}
+        	<table border="1" width="20%">
+        		<tr>
+        			<th>Creation Date</th>
+        			<th>Amount</th>
+        			</tr>
+        			{this.renderObjects()}
+        	</table>
+		  </div>
 
         </Col>
       </Row>
@@ -151,17 +239,25 @@ class PlotBudget extends React.Component {
   
   renderObjects() {
 	  console.log("Render Objects");
-	  console.log(this.props.budgetList);
-	   return _.map(this.props.budgetList, object => {
-		   
-		   var d = new Date(object[0]);
-		   var date = d.toLocaleDateString();
-		   var amt = object[1];
-		   	return ( <tr>
-		   				<td>{date} </td>
-				        <td>{amt}</td>
-			         </tr> );
-	   });
+	  var result = this.props.budgetList;
+	  console.log(result.length);
+	  for (var i=0; i<result.length; i++)
+	  {
+	       console.log(result[i].data);
+		   return _.map(result[i].data, object => {
+			   
+			   var d = new Date(object[0]);
+			   var date = d.toLocaleDateString();
+			   var amt = object[1];
+			   	return ( <tr>
+			   				<td>{date} </td>
+					        <td>{amt}</td>
+				         </tr> );
+		   });
+	  }
+	  //console.log(this.props.budgetList);
+
+	   
   }
 }
 

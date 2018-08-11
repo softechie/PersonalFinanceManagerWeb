@@ -46,13 +46,29 @@ const BudgetFieldsCard = (props) => {
                 <option value="Investment">Investment</option>
                 <option value="Income">Income</option>
                 <option value="Expense">Expense</option>
+                <option value="Income Vs Expense">Income Vs Expense</option>
+                <option value="Income Vs Investment">Income Vs Investment</option>
               </Field>
             </FormGroup>
           </Col>
-            <Col xs="12" className="text-center">
-              <Button color="primary" type="submit">{props.submitName}</Button>
-            </Col>
-          </Row>
+          <Col xs="12" sm="6" lg="4">
+          <FormGroup>
+            <Field id="plotType"
+                   type="select"
+                   name="plotType"
+                   title="Plot Type"
+                   validate={required}
+                   component={InputSelect}>
+              <option value="column">Column</option>
+              <option value="bar">Bar</option>
+              <option value="line">Line</option>
+            </Field>
+          </FormGroup>
+        </Col>
+          <Col xs="12" className="text-center">
+            <Button color="primary" type="submit">{props.submitName}</Button>
+          </Col>
+         </Row>
         </form>
       </CardBody>
     </Card>
@@ -69,6 +85,7 @@ export default reduxForm({
   form: 'budgetForm',
   enableReinitialize: true,
   initialValues: {
-    budgetType: 'Plot'
+    budgetType: 'Investment',
+    plotType: 'bar'
   }
 })(BudgetFieldsCard)
