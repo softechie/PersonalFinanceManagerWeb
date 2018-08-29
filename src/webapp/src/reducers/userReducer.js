@@ -1,5 +1,14 @@
 import * as actions from '../actions/types'
+import Keycloak from 'keycloak-js'
 
+let keycloak = new Keycloak({
+  'realm': 'demo',
+  'url': 'http://localhost:8080/auth',
+  'ssl-required': 'external',
+  'clientId': 'pfm_react_app',
+  'public-client': true,
+  'confidential-port': 0
+})
 let user = JSON.parse(localStorage.getItem('pfm_user'))
 // const initialState = user ? { loggedIn: true, user: user } : { loggedIn: false, user: {} };
 const initialState = {
@@ -8,7 +17,8 @@ const initialState = {
   stepDetails: {
     stepError: false,
     currentStep: 0
-  }
+  },
+  keycloak: keycloak
 }
 
 export default function userReducer(state = initialState, action) {
