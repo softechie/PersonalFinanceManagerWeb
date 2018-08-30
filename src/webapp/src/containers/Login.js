@@ -12,7 +12,7 @@ class Login extends Component {
 
   componentWillMount() {
     let keycloakInst = this.props.keycloak
-    keycloakInst.init().then(authenticated => {
+    keycloakInst.init({onLoad: 'check-sso'}).then(authenticated => {
       console.log("login page"+keycloakInst.authenticated)
       this.props.updateKeycloak(keycloakInst)
       if(!authenticated)
@@ -20,13 +20,6 @@ class Login extends Component {
       else
         this.props.history.push('/')
     })
-    // console.log(keycloakInst)
-    // if(!keycloakInst.authenticated) {
-    //   console.log("login page"+keycloakInst.authenticated)
-    //   // keycloakInst.login()
-    // }
-    // else
-    //   this.props.history.push('/')
   }
 
   render() {

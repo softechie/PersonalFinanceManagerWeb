@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { NavLink,  Link } from 'react-router-dom'
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem , NavItem} from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import Avatar from 'react-avatar';
 import * as actions from '../actions';
 import { connect } from 'react-redux'
@@ -81,7 +81,7 @@ class NavigationBar extends React.Component {
     return (
       <Fragment>
         <Navbar color="menu" dark expand="lg" className={isloggedIn ? "bg-menu-sm": ""}>
-          <NavbarBrand href="/" className="pfm">PFM</NavbarBrand>
+          <NavLink to="/"><NavbarBrand className="pfm">PFM</NavbarBrand></NavLink>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav navbar>

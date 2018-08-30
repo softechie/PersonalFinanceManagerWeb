@@ -4,7 +4,13 @@ import * as actions from '../actions'
 
 class Logout extends Component {
   componentWillMount() {
-    this.props.logout()
+    // this.props.logout()
+    if(this.props.keycloak.authenticated) {
+      this.props.history.push('/')
+      this.props.keycloak.logout()
+    }
+    else
+      this.props.history.push('/')
   }
   
   render() {
@@ -14,8 +20,12 @@ class Logout extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  keycloak: state.userReducer.keycloak
+})
+
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(actions.logout())
 })
 
-export default connect(null, mapDispatchToProps) (Logout)
+export default connect(mapStateToProps, mapDispatchToProps) (Logout)
