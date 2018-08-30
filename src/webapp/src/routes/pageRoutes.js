@@ -17,14 +17,19 @@ import Logout from '../containers/Logout'
 
 const getLoggedInState = () => {
   let state = store.getState()
-  return state.userReducer.loggedIn
+  // return state.userReducer.loggedIn
+  console.log(state.userReducer.keycloak.authenticated)
+  if(typeof state.userReducer.keycloak.authenticated === 'undefined')
+    return false
+  else
+    return state.userReducer.keycloak.authenticated
 }
 const PageRoutes = () => {
   return (
     <Switch>
       <PropsRoute exact path="/" component={Home} />
       <PublicRoute path="/login" authed={getLoggedInState()} redirectTo="/" component={Login} />
-      <PublicRoute path="/signup" authed={getLoggedInState()} redirectTo="/login" component={RegisterUser} />
+      <PublicRoute path="/signup" authed={getLoggedInState()} redirectTo="/" component={RegisterUser} />
       <PrivateRoute path="/logout" authed={getLoggedInState()} redirectTo="/login" component={Logout} />
       <PrivateRoute path="/income" authed={getLoggedInState()} redirectTo="/login" component={Income} />
       <PrivateRoute path="/expense" authed={getLoggedInState()} redirectTo="/login" component={Expense} />

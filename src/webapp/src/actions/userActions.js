@@ -68,3 +68,9 @@ export const getProfile = (emailId) => {
       }) 
   }
 }
+
+export const updateKeycloak = (keycloak) => {
+  return (dispatch) => {
+    dispatch({type: actions.AUTH_UPDATE_KEYCLOAK, payload: keycloak})
+  }
+}

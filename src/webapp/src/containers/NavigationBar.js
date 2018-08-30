@@ -31,6 +31,7 @@ class NavigationBar extends React.Component {
     if((this.props.auth.loggedIn !== nextProps.auth.loggedIn) && this.props.currentUser.emailId) {
       this.props.getProfile(this.props.currentUser.emailId)
     }
+    this.forceUpdate()
   }
 
   toggle = () => {
@@ -46,7 +47,13 @@ class NavigationBar extends React.Component {
   }
 
   render() {
-    let isloggedIn = this.props.auth.loggedIn
+    // let isloggedIn = this.props.auth.loggedIn
+    let isloggedIn = this.props.keycloak.authenticated
+    if(typeof this.props.keycloak.authenticated === 'undefined')
+      isloggedIn = false
+    
+    console.log("This is navbar"+this.props.keycloak.authenticated)
+    
     let navItems = isloggedIn ? <NavigationItems/> : ""
     let authBtn, avtrBtn
     
@@ -93,7 +100,8 @@ class NavigationBar extends React.Component {
 
 const mapStateToProps = state => ({
   currentUser: state.userReducer.user,
-  auth: state.userReducer
+  auth: state.userReducer,
+  keycloak: state.userReducer.keycloak
 })
 
 const mapDispatchToProps = dispatch => ({

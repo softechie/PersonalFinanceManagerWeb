@@ -35,6 +35,8 @@ export default function userReducer(state = initialState, action) {
       return state = {...state, stepDetails: { ...state.stepDetails, stepError: true } }
     case actions.GET_PROFILE_FULFILLED:
       return state = {...state, user: action.payload.data}
+    case actions.AUTH_UPDATE_KEYCLOAK:
+      return state = {...state, keycloak: action.payload}
     default:
       return state
     }
