@@ -8,7 +8,6 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav} from 'reactstrap'
 import NavigationItems from '../components/NavBar/NavItems'
 
@@ -52,8 +51,6 @@ class NavigationBar extends React.Component {
     if(typeof this.props.keycloak.authenticated === 'undefined')
       isloggedIn = false
     
-    console.log("This is navbar"+this.props.keycloak.authenticated)
-    
     let navItems = isloggedIn ? <NavigationItems/> : ""
     let authBtn, avtrBtn
     
@@ -81,7 +78,7 @@ class NavigationBar extends React.Component {
     return (
       <Fragment>
         <Navbar color="menu" dark expand="lg" className={isloggedIn ? "bg-menu-sm": ""}>
-          <NavLink to="/"><NavbarBrand className="pfm">PFM</NavbarBrand></NavLink>
+          <NavLink to="/" className="pfm navbar-brand">PFM</NavLink>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav navbar>

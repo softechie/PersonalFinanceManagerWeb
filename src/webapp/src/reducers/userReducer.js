@@ -2,18 +2,18 @@ import * as actions from '../actions/types'
 import Keycloak from 'keycloak-js'
 
 let keycloak = new Keycloak({
-  'realm': 'demo',
+  'realm': 'PFM',
   'url': 'http://localhost:8080/auth',
   'ssl-required': 'external',
   'clientId': 'pfm_react_app',
   'public-client': true,
   'confidential-port': 0
 })
-let user = JSON.parse(localStorage.getItem('pfm_user'))
+// let user = JSON.parse(localStorage.getItem('pfm_user'))
 // const initialState = user ? { loggedIn: true, user: user } : { loggedIn: false, user: {} };
 const initialState = {
-  user: user ? user : {},
-  loggedIn: user ? true : false,
+  user: {},
+  loggedIn: false,
   stepDetails: {
     stepError: false,
     currentStep: 0
@@ -37,6 +37,8 @@ export default function userReducer(state = initialState, action) {
       return state = {...state, user: action.payload.data}
     case actions.AUTH_UPDATE_KEYCLOAK:
       return state = {...state, keycloak: action.payload}
+    case actions.AUTH_GET_PROFILE_FULFILLED:
+      return state = {...state, user: action.payload.data}
     default:
       return state
     }

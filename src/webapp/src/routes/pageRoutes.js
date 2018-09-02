@@ -17,8 +17,6 @@ import Logout from '../containers/Logout'
 
 const getLoggedInState = () => {
   let state = store.getState()
-  // return state.userReducer.loggedIn
-  console.log(state.userReducer.keycloak.authenticated)
   if(typeof state.userReducer.keycloak.authenticated === 'undefined')
     return false
   else

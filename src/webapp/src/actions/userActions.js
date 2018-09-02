@@ -74,3 +74,9 @@ export const updateKeycloak = (keycloak) => {
     dispatch({type: actions.AUTH_UPDATE_KEYCLOAK, payload: keycloak})
   }
 }
+
+export const updateKeycloakUser = (profile) => {
+  return (dispatch) => {
+    dispatch({type: actions.AUTH_GET_PROFILE_FULFILLED, payload: profile})
+  }
+}

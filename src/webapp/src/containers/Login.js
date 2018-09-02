@@ -1,30 +1,39 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
 import * as actions from '../actions'
-import LoginForm from '../components/loginForm'
+// import LoginForm from '../components/loginForm'
 
 class Login extends Component {
 
   handleSubmit = (values) => {
-    console.log(values)
     this.props.loginUser(values)
   }
 
   componentWillMount() {
     let keycloakInst = this.props.keycloak
     keycloakInst.init({onLoad: 'check-sso'}).then(authenticated => {
-      console.log("login page"+keycloakInst.authenticated)
       this.props.updateKeycloak(keycloakInst)
       if(!authenticated)
         keycloakInst.login()
-      else
+      else {
+        // keycloakInst.loadUserInfo()
+        // .then(keycloakProfile => {
+        //   console.log(keycloakProfile.given_name)
+        //   let profile = {
+        //     emailId: keycloakProfile.email,
+        //     firstName: keycloakProfile.given_name,
+        //     lastName: keycloakProfile.family_name
+        //   }
+        //   this.props.updateKeycloakUser(profile)
+        // })
         this.props.history.push('/')
+      }
     })
   }
 
   render() {
     return (
-      <div >
+      <div>
         {/*<LoginForm title="Personal Finance Manager Login"
                    submitName="Login"
                    onSubmit={this.handleSubmit}>
@@ -40,8 +49,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  loginUser: (loginDetails) => dispatch(actions.loginUser(loginDetails)),
-  updateKeycloak: (keycloak) => dispatch(actions.updateKeycloak(keycloak))
+  // loginUser: (loginDetails) => dispatch(actions.loginUser(loginDetails)),
+  updateKeycloak: (keycloak) => dispatch(actions.updateKeycloak(keycloak)),
+  updateKeycloakUser: (profile) => dispatch(actions.updateKeycloakUser(profile))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (Login)
