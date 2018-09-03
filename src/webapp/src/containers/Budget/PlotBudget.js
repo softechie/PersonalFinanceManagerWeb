@@ -67,7 +67,7 @@ class PlotBudget extends React.Component {
 
 
   render() {
-	 
+
 	  const options = {
 	  colors: ['#7cb5ec', '#f7a35c', '#90ee7e', '#7798BF', '#aaeeee', '#ff0066',
 	        '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
@@ -205,6 +205,7 @@ class PlotBudget extends React.Component {
         </Col>
       </Row>
     )
+	 
   }
 
 // processObjects() 
@@ -240,6 +241,7 @@ class PlotBudget extends React.Component {
   renderObjects() {
 	  console.log("Render Objects");
 	  var result = this.props.budgetList;
+	  console.log(this.props.budgetList);
 	  console.log(result.length);
 	  for (var i=0; i<result.length; i++)
 	  {
