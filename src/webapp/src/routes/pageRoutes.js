@@ -6,7 +6,7 @@ import { PropsRoute, PublicRoute, PrivateRoute } from 'react-router-with-props'
 import Home from '../containers/Home'
 import Income from '../containers/Income'
 import Expense from '../containers/Expense'
-import Budget from '../containers/Budget'
+import PlotBudget from '../containers/Budget/PlotBudget'
 import Investments from '../containers/Investments'
 import BankAccount from '../containers/BankAccount'
 import Profile from '../containers/Profile'
@@ -35,7 +35,7 @@ const PageRoutes = () => {
       <PrivateRoute path="/bankAccount" authed={getLoggedInState()} redirectTo="/login" component={BankAccount} />
       <PrivateRoute path="/profile" authed={getLoggedInState()} redirectTo="/login" component={Profile} />
       <PrivateRoute path="/settings" authed={getLoggedInState()} redirectTo="/login" component={Settings} />
-      <PrivateRoute path="/budget" authed={getLoggedInState()} redirectTo="/login" component={Budget} />
+      <PrivateRoute path="/budgetPlot" authed={getLoggedInState()} redirectTo="/login" component={PlotBudget} />
     </Switch>
   )
 }

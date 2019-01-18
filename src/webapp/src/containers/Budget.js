@@ -13,9 +13,6 @@ class Budget extends React.Component {
               <NavItem>
                 <NavLink to={`${this.props.match.url}/plot`} className="nav-link" activeClassName="active">Budget Plot</NavLink>
               </NavItem>
-              <NavItem>
-              <NavLink to={`${this.props.match.url}/summary`} className="nav-link" activeClassName="active">Money Flow Summary</NavLink>
-            </NavItem>              
             </Nav>
           </Col>
           <Col xs="12" sm="9">
