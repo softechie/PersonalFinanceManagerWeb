@@ -20,6 +20,6 @@ jobs:
       - save_cache:
           paths:
             - ~/pfm-app/src/webapp/node_modules
-          key: pfm-app-node-{{ checksum "package.json" }}
+          key: pfm-app-node-{{ checksum "~/pfm-app/src/webapp/package.json" }}
       - store_artifacts:
           path: target/spring-boot-react-0.0.1-SNAPSHOT.jar
