@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from "react-dom";
 import Chart from "react-google-charts";
 import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'

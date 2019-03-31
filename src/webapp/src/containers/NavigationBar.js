@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { NavLink,  Link } from 'react-router-dom'
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem , NavItem} from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import Avatar from 'react-avatar';
 import * as actions from '../actions';
 import { connect } from 'react-redux'

@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Row, Col, Card, CardBody, CardTitle, FormGroup, Button, Text } from 'reactstrap'
-import InputSelect from '../Inputs/InputSelect'
+import { Row, Col, Card, CardBody, CardTitle, FormGroup, Button } from 'reactstrap'
 import InputDate from '../Inputs/InputDate'
 import { Field, reduxForm } from 'redux-form'
 
