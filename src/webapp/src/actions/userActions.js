@@ -30,6 +30,9 @@ export const logout = () => {
 }
 
 export const registerUser = (registerDetails) => {
+  console.log(registerDetails);
+  console.log("hi");
+  console.log(process.env.REACT_APP_API);
   return (dispatch) => {
     dispatch({type: actions.REGISTER_USER_PENDING})
     API.post('/register/new', registerDetails)
