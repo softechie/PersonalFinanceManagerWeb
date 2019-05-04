@@ -9,7 +9,7 @@ import { Container, Row, Col } from 'reactstrap'
 import NavigationBar from './containers/NavigationBar'
 import NotificationsSystem from 'reapop';
 import theme from 'reapop-theme-wybo';
-
+require('dotenv').config();
 class App extends Component {
   render() {
     return (
