@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/pfm-app
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
+    
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - pfm-app-maven-{{ checksum "pom.xml" }}
+            - pfm-app-node-{{ checksum "package.json" }}
+      - run: mvn dependency:go-offline
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: pfm-app-maven-{{ checksum "pom.xml" }}
+      - run: mvn clean install
+      - save_cache:
+          paths:
+            - ~/pfm-app/src/webapp/node_modules
+          key: pfm-app-node-{{ checksum "~/pfm-app/src/webapp/package.json" }}
+      - store_artifacts:
+          path: target/spring-boot-react-0.0.1-SNAPSHOT.jar
