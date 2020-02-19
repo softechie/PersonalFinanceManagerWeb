@@ -5,3 +5,9 @@
 **/build
 **/node
 *.key
+**/.vscode
+*.project
+*.classpath
+**/.settings
+*.factorypath
+**/.sts4-cache
