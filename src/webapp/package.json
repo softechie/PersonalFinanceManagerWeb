@@ -5,7 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
-    "highcharts": "^7.0.3",
+    "highcharts": "^9.0.0",
     "highcharts-react-official": "^2.1.2",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
